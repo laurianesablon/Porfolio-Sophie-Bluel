@@ -26,15 +26,15 @@ fetch("http://localhost:5678/api/works")
     const apparts = document.querySelector(".appart");
     const hotel = document.querySelector(".hotel");
     const tous = document.querySelector(".tous");
-    
+
     //Boutons filtres
     function filtres() {
       objets.addEventListener("click", () => {
         const objetFiltre = works.filter((work) => {
-          objets.classList.add("buttonSelected")
-          hotel.classList.remove("buttonSelected")
-          apparts.classList.remove("buttonSelected")
-          tous.classList.remove("buttonSelected")
+          objets.classList.add("buttonSelected");
+          hotel.classList.remove("buttonSelected");
+          apparts.classList.remove("buttonSelected");
+          tous.classList.remove("buttonSelected");
           return work.category.name === "Objets";
         });
         afficherImage(objetFiltre);
@@ -42,22 +42,22 @@ fetch("http://localhost:5678/api/works")
 
       apparts.addEventListener("click", () => {
         const appartFiltre = works.filter((work) => {
-          apparts.classList.add("buttonSelected")
-          hotel.classList.remove("buttonSelected")
-          tous.classList.remove("buttonSelected")
-          objets.classList.remove("buttonSelected")
+          apparts.classList.add("buttonSelected");
+          hotel.classList.remove("buttonSelected");
+          tous.classList.remove("buttonSelected");
+          objets.classList.remove("buttonSelected");
 
           return work.category.name === "Appartements";
         });
         afficherImage(appartFiltre);
       });
-      
+
       hotel.addEventListener("click", () => {
         const hotelFiltre = works.filter((work) => {
-          hotel.classList.add("buttonSelected")
-          tous.classList.remove("buttonSelected")
-          apparts.classList.remove("buttonSelected")
-          objets.classList.remove("buttonSelected")
+          hotel.classList.add("buttonSelected");
+          tous.classList.remove("buttonSelected");
+          apparts.classList.remove("buttonSelected");
+          objets.classList.remove("buttonSelected");
 
           return work.category.name === "Hotels & restaurants";
         });
@@ -66,13 +66,10 @@ fetch("http://localhost:5678/api/works")
 
       tous.addEventListener("click", () => {
         // Clear the gallery before showing all images
-        tous.classList.add("buttonSelected")
-        hotel.classList.remove("buttonSelected")
-        apparts.classList.remove("buttonSelected")
-        objets.classList.remove("buttonSelected")
-
-
-
+        tous.classList.add("buttonSelected");
+        hotel.classList.remove("buttonSelected");
+        apparts.classList.remove("buttonSelected");
+        objets.classList.remove("buttonSelected");
 
         gallery.innerHTML = "";
         afficherImage(works);
@@ -81,6 +78,6 @@ fetch("http://localhost:5678/api/works")
 
     filtres();
     afficherImage(works); // display all images at the beginning
-
   })
   .catch((error) => console.error(error));
+
