@@ -1,5 +1,8 @@
 gallery = document.querySelector(".gallery");
-
+const objets = document.querySelector(".objets");
+const apparts = document.querySelector(".appart");
+const hotel = document.querySelector(".hotel");
+const tous = document.querySelector(".tous");
 //Affiche les images
 
 fetch("http://localhost:5678/api/works")
@@ -21,11 +24,6 @@ fetch("http://localhost:5678/api/works")
         gallery.appendChild(figure);
       }
     }
-
-    const objets = document.querySelector(".objets");
-    const apparts = document.querySelector(".appart");
-    const hotel = document.querySelector(".hotel");
-    const tous = document.querySelector(".tous");
 
     //Boutons filtres
     function filtres() {
@@ -80,4 +78,36 @@ fetch("http://localhost:5678/api/works")
     afficherImage(works); // display all images at the beginning
   })
   .catch((error) => console.error(error));
+const authorized = localStorage.token
+//gerer la page lorsque connecté
+ filtres = document.querySelector('#filtres')
+ if (localStorage.token === authorized) {
+  const modifierP = document.querySelector(".modifier_portfolio")
+  const modifierI = document.querySelector(".modifier_introduction")
 
+  modifierP.classList.remove("remove");
+  modifierI.classList.remove("remove");
+
+  //retirer les bouttons filtres
+  tous.remove();
+  objets.remove();
+  apparts.remove();
+  hotel.remove();
+  // changer le lien login en logout
+  const link_login = document.querySelector(".link_login")
+  link_login.innerHTML = "logout"
+  link_login.addEventListener('click', ()=> {
+    localStorage.clear()
+    window.location.href="index.html"
+  })
+  //afficher la modale lorsque je clique sur modifier
+ // modifierP.addEventListener('click', () => {
+    //const modale = document.querySelector(".modale")
+   // modale.classList.remove("remove")
+
+
+  //})
+
+
+ }
+ console.log(localStorage.token)

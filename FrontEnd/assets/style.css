@@ -3,237 +3,396 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
+  max-width: 1140px;
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
 }
 header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
 }
 section {
-	margin: 50px 0
+  margin: 50px 0;
 }
 
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
 }
 
 h1 > span {
-	font-family: 'Work Sans';
-	font-size:10px;
-	letter-spacing: 0.1em;
-;
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
 }
 
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: #1d6154;
 }
 nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-
+  display: flex;
+  align-items: center;
+  list-style-type: none;
 }
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+  padding: 0 10px;
+  font-size: 1.2em;
+}
+
+.modale {
+  position: fixed;
+  background-color: #3d3d3d61;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+}
+
+.modale div {
+  background-color: white;
+  position: absolute;
+  width: 630px;
+  height: 731px;
+  left: 405px;
+  top: 160px;
+}
+
+.modale i {
+	display: block;
+	height: 10px;
+	color: black;
+}
+
+.modale h3 {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+	font-size: 26px;
+	font-weight: 400;
+}
+.link_login {
+  text-decoration: none;
+  color: black;
 }
 
 li:hover {
-	color: #B1663C;
+  color: #b1663c;
 }
 #introduction {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 #introduction figure {
-	flex: 1
+  flex: 1;
 }
-#introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+#introduction figure .modifier_portfolio,
+.modifier_introduction {
+  margin: 10px 57px;
+}
+#introduction figure .icon_modifier {
+  width: 18px;
+}
+#introduction .photo_sb {
+  display: block;
+  margin: auto;
+  width: 80%;
 }
 
+.modifier_introduction img {
+  margin-right: 10px;
+}
+.remove {
+  display: none;
+}
 #introduction article {
-	flex: 1
+  flex: 1;
 }
 #introduction h2 {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+#portfolio .projets {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+}
+
+.modifier_portfolio {
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.modifier_portfolio img {
+  margin-right: 10px;
 }
 
 .filtres {
-	display: flex;
-	justify-content: center;
-	gap: 10px;
-	padding-top: 20px;
-	padding-bottom: 50px;
-	
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 20px;
+  padding-bottom: 50px;
 }
 .filtres button {
-	height: 37px;
-	color: #1D6154;
-	font-weight: 700;
-	font-size: 16px;
-	font-family: 'Syne';
-	background-color: white;
-	border: #1D6154 2px solid;
-	border-radius: 50px;
-	padding: 5px 15px;
+  height: 37px;
+  color: #1d6154;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: "Syne";
+  background-color: white;
+  border: #1d6154 2px solid;
+  border-radius: 50px;
+  padding: 5px 15px;
 }
 
 .filtres button.buttonSelected {
-	background-color: #1D6154;
-	color: white;
-
+  background-color: #1d6154;
+  color: white;
 }
 .gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
 .gallery img {
-	width: 100%;
-
+  width: 100%;
 }
-#contact , #login{
-	width: 50%;
-margin: auto;
+#contact,
+#login {
+  width: 50%;
+  margin: auto;
 }
 
 #login {
-	margin-top: 150px;
+  margin-top: 150px;
 }
-#contact > * , #login > *{
-	text-align: center;
-
+#contact > *,
+#login > * {
+  text-align: center;
 }
-#contact h2 , #login h2{
-	margin-bottom: 20px;
+#contact h2,
+#login h2 {
+  margin-bottom: 20px;
 }
-#contact form , #login form{
-	text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
-}
-
-#contact input, #login input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-#contact label, #login label {
-	margin: 2em 0 1em 0;
-}
-#contact textarea, #login textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+#contact form,
+#login form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
-input[type="submit"]{
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
+#contact input,
+#login input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label,
+#login label {
+  margin: 2em 0 1em 0;
+}
+#contact textarea,
+#login textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type="submit"] {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
 }
 
 .oubli {
-	color: #3D3D3D;
-	display: flex;
-	justify-content: center;
+  color: #3d3d3d;
+  display: flex;
+  justify-content: center;
 }
 footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
 }
 
 #footer_login {
-	margin-top: 305px;
+  margin-top: 305px;
 }
 
 .shake {
-	animation: shake 0.5s ease-in-out;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
   }
-  
-  @keyframes shake {
-	0% { transform: translateX(0); }
-	20% { transform: translateX(-10px); }
-	40% { transform: translateX(10px); }
-	60% { transform: translateX(-10px); }
-	80% { transform: translateX(10px); }
-	100% { transform: translateX(0); }
+  20% {
+    transform: translateX(-10px);
   }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-10px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

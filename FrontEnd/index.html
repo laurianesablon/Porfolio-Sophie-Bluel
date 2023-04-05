@@ -12,21 +12,31 @@
 	<script src="./assets/javascript/index.js" defer ></script>
 </head>
 <body>
+	<!--<section class="modale">
+		<div>
+			<i class="fa-sharp fa-solid fa-xmark"></i>
+			<h3>Galerie Photo</h3>
+		</div>
+
+	</section>-->
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<li class="link_login"><a href="login.html"></a>login</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
 </header>
 <main>
+
+	
 	<section id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img class="photo_sb" src="./assets/images/sophie-bluel.png" alt="Image de Sophie bluel">
+			<div class="modifier_introduction remove"><img class="icon_modifier" src="./assets/icons/modifier.svg">modifier</div>
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -36,7 +46,11 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="projets">
+			<h2>Mes Projets</h2>
+		<div class="modifier_portfolio remove"><img class="icon_modifier" src="./assets/icons/modifier.svg">modifier</div>
+		</div>
+		
 		<article class="filtres">
 			<button class="buttonSelected tous">Tous</button>
 			<button class="objets">Objets</button>
