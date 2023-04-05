@@ -78,12 +78,12 @@ fetch("http://localhost:5678/api/works")
     afficherImage(works); // display all images at the beginning
   })
   .catch((error) => console.error(error));
-const authorized = localStorage.token
+const authorized = localStorage.token;
 //gerer la page lorsque connecté
- filtres = document.querySelector('#filtres')
- if (localStorage.token !== undefined) {
-  const modifierP = document.querySelector(".modifier_portfolio")
-  const modifierI = document.querySelector(".modifier_introduction")
+filtres = document.querySelector("#filtres");
+if (localStorage.token !== undefined) {
+  const modifierP = document.querySelector(".modifier_portfolio");
+  const modifierI = document.querySelector(".modifier_introduction");
 
   modifierP.classList.remove("remove");
   modifierI.classList.remove("remove");
@@ -94,21 +94,56 @@ const authorized = localStorage.token
   apparts.remove();
   hotel.remove();
   // changer le lien login en logout
-  const link_login = document.querySelector(".link_login a")
+  const link_login = document.querySelector(".link_login a");
   link_login.textContent = "logout";
-  link_login.addEventListener('click', (event)=> {
+  link_login.addEventListener("click", (event) => {
     event.preventDefault();
     localStorage.clear();
     window.location.reload();
-  })
+  });
   //afficher la modale lorsque je clique sur modifier
- // modifierP.addEventListener('click', () => {
-    //const modale = document.querySelector(".modale")
-   // modale.classList.remove("remove")
+  modifierP.addEventListener("click", () => {
+  const modale = document.querySelector(".modale");
+  modale.classList.remove("remove");
+  const modale_images = document.querySelector(".modale_container_images");
+  fetch("http://localhost:5678/api/works")
+    .then((response) => response.json())
+    .then((data) => {
+      const works = data;
+      for (let i = 0; i < works.length; i++) {
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+        const trash = document.createElement("img");
+        img.src = works[i].imageUrl;
+        img.classList.add("modale_image");
+        figure.appendChild(img);
+        trash.src = "./assets/icons/trash.svg";
+        trash.classList.add("modale_image_trash");
+        modale_images.appendChild(figure);
+        figure.appendChild(trash);
+      }
+      //icone croix retour
+      icone_retour = document.querySelector(".fa-xmark");
+      icone_retour.addEventListener("click", () => {
+        modale.classList.add("remove");
+        //supprimer les photos en sortant
+        modale_images.innerHTML = "";
+
+      });
+    })
+    .catch((error) => console.error(error));
+  function deleteProject(id) {
+    fetch("http://localhost:5678/api/works/" + id, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log("Il y a un problème : " + err));
+  }
 
 
-  //})
-
-
- }
-
+   });
+}
