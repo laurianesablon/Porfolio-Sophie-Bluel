@@ -81,7 +81,7 @@ fetch("http://localhost:5678/api/works")
 const authorized = localStorage.token
 //gerer la page lorsque connecté
  filtres = document.querySelector('#filtres')
- if (localStorage.token === authorized) {
+ if (localStorage.token !== undefined) {
   const modifierP = document.querySelector(".modifier_portfolio")
   const modifierI = document.querySelector(".modifier_introduction")
 
@@ -94,11 +94,12 @@ const authorized = localStorage.token
   apparts.remove();
   hotel.remove();
   // changer le lien login en logout
-  const link_login = document.querySelector(".link_login")
-  link_login.innerHTML = "logout"
-  link_login.addEventListener('click', ()=> {
-    localStorage.clear()
-    window.location.href="index.html"
+  const link_login = document.querySelector(".link_login a")
+  link_login.textContent = "logout";
+  link_login.addEventListener('click', (event)=> {
+    event.preventDefault();
+    localStorage.clear();
+    window.location.reload();
   })
   //afficher la modale lorsque je clique sur modifier
  // modifierP.addEventListener('click', () => {
@@ -110,4 +111,4 @@ const authorized = localStorage.token
 
 
  }
- console.log(localStorage.token)
+

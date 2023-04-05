@@ -211,9 +211,19 @@ nav li {
   text-decoration: none;
   color: black;
 }
+li{
+  cursor:pointer;
+}
+li a{
+ 
+  color:#000000;
+  text-decoration:none;
 
-li:hover {
+}
+li a:hover, li:hover{
+ 
   color: #b1663c;
+
 }
 #introduction {
   display: flex;
