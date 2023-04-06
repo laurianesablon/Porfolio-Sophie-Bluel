@@ -21,8 +21,6 @@ form.addEventListener("submit", (e) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.token);
-      //pas parfait car et si la personne change de mot de passe
       if (data.userId === 1) {
         window.location.href = "index.html";
         window.localStorage.setItem("token", `${data.token}`);

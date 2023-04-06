@@ -19,13 +19,14 @@ fetch("http://localhost:5678/api/works")
         img.src = filtre[i].imageUrl;
         img.alt = filtre[i].title;
         figcaption.textContent = filtre[i].title;
+        figure.id = "work-" + filtre[i].id;
         figure.appendChild(img);
         figure.appendChild(figcaption);
         gallery.appendChild(figure);
       }
     }
 
-    //Boutons filtres
+    //Boutons filtres:  très mal écrit, à optimiser
     function filtres() {
       objets.addEventListener("click", () => {
         const objetFiltre = works.filter((work) => {
@@ -103,47 +104,60 @@ if (localStorage.token !== undefined) {
   });
   //afficher la modale lorsque je clique sur modifier
   modifierP.addEventListener("click", () => {
-  const modale = document.querySelector(".modale");
-  modale.classList.remove("remove");
-  const modale_images = document.querySelector(".modale_container_images");
-  fetch("http://localhost:5678/api/works")
-    .then((response) => response.json())
-    .then((data) => {
-      const works = data;
-      for (let i = 0; i < works.length; i++) {
-        const figure = document.createElement("figure");
-        const img = document.createElement("img");
-        const trash = document.createElement("img");
-        img.src = works[i].imageUrl;
-        img.classList.add("modale_image");
-        figure.appendChild(img);
-        trash.src = "./assets/icons/trash.svg";
-        trash.classList.add("modale_image_trash");
-        modale_images.appendChild(figure);
-        figure.appendChild(trash);
-      }
-      //icone croix retour
-      icone_retour = document.querySelector(".fa-xmark");
-      icone_retour.addEventListener("click", () => {
-        modale.classList.add("remove");
-        //supprimer les photos en sortant
-        modale_images.innerHTML = "";
+    const modale = document.querySelector(".modale");
+    modale.classList.remove("remove");
+    const modale_images = document.querySelector(".modale_container_images");
+    fetch("http://localhost:5678/api/works")
+      .then((response) => response.json())
+      .then((data) => {
+        const works = data;
+        for (let i = 0; i < works.length; i++) {
+          const figure = document.createElement("figure");
+          const img = document.createElement("img");
+          const trash = document.createElement("img");
+          img.src = works[i].imageUrl;
+          img.classList.add("modale_image");
+          figure.appendChild(img);
+          //bouton poubelle (delete)
+          trash.src = "./assets/icons/trash.svg";
+          trash.classList.add("modale_image_trash");
+          trash.addEventListener("click", () => {
+            console.log(works[i].id);
+            deleteProject(works[i].id);
+            // Remove the work from the DOM
+            modale_images.removeChild(figure);
+          });
+          modale_images.appendChild(figure);
+          figure.appendChild(trash);
+        }
+        //icone croix retour
+        icone_retour = document.querySelector(".fa-xmark");
+        icone_retour.addEventListener("click", () => {
+          modale.classList.add("remove");
+          //supprimer les photos en sortant
+          modale_images.innerHTML = "";
+          window.location.reload();
+        });
+      })
+      .catch((error) => console.error(error));
+  });
 
-      });
-    })
-    .catch((error) => console.error(error));
   function deleteProject(id) {
     fetch("http://localhost:5678/api/works/" + id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.token}`,
       },
-      body: JSON.stringify(data),
     })
       .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const figure_gallery = document.querySelector("#work-" + id);
+        console.log(figure_gallery)
+        if (figure) {
+          figure_gallery.remove();
+        }
+      })
       .catch((err) => console.log("Il y a un problème : " + err));
   }
-
-
-   });
 }
