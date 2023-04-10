@@ -79,10 +79,10 @@ fetch("http://localhost:5678/api/works")
     afficherImage(works); // display all images at the beginning
   })
   .catch((error) => console.error(error));
-const authorized = localStorage.token;
+const authentified = localStorage.token;
 //gerer la page lorsque connecté
 filtres = document.querySelector("#filtres");
-if (localStorage.token !== undefined) {
+if (authentified !== undefined) {
   const modifierP = document.querySelector(".modifier_portfolio");
   const modifierI = document.querySelector(".modifier_introduction");
 
@@ -138,6 +138,79 @@ if (localStorage.token !== undefined) {
           modale_images.innerHTML = "";
           window.location.reload();
         });
+        const ajout_photo = document.querySelector(".ajout_photo");
+        ajout_photo.addEventListener("click", () => {
+          const modale_start = document.querySelector(".modale_start");
+          const modale_form = document.querySelector(".modale_form");
+          modale_start.remove();
+          modale_form.classList.remove("remove");
+          const real_form_btn = document.querySelector("#real_image_form");
+          const ajout_photo_btn = document.querySelector("#ajout_photo");
+          icone_retour = document.querySelector(".fa-xmark");
+          icone_retour.addEventListener("click", () => {
+            modale.classList.add("remove");
+          });
+          ajout_photo_btn.addEventListener("click", () => {
+            real_form_btn.click();
+          });
+          // envoi du formulaire
+          image_input = document.querySelector("#real_image_form");
+          form_container = document.querySelector(".modale_container_form");
+          const photo = document.getElementById("ajout_photo");
+          const category = document.getElementById("input_category");
+          const title = document.getElementById("input_title");
+          image_input.addEventListener("change", () => {
+            fetch("http://localhost:5678/api-docs/#/default/get_categories")
+              .then((response) => response.json())
+              .then((data) => {
+                const categories = data;
+                console.log(categories)
+                // Parcours de la liste des catégories pour récupérer l'id correspondant à la catégorie sélectionnée
+                for (let i = 0; i < categories.length; i++) {
+                  if (category.value === categories[i].name) {
+                    categories[i].name = categories[i].id;
+                  }
+                }
+                // Récupération de l'image et du titre
+                const image = document.getElementById("real_image_form").files[0];
+                const titre = document.getElementById("input_title").value;
+                console.log(image);
+                // Vérification de la taille de l'image
+                if (image.size < maxSize) {
+                  // Création du formulaire pour l'envoi des données
+                  const formData = new FormData();
+                  formData.append("image", image);
+                  formData.append("title", titre);
+                  formData.append("category", categories[i].id);
+
+                  // Envoi des données à l'API via une requête POST
+                  fetch("http://localhost:5678/api/works", {
+                    method: "POST",
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                      accept: "application/json",
+                    },
+                    body: formData,
+                  })
+                    .then((response) => {
+                      if (response.ok) {
+                        console.log("Work successfully created");
+                        // Redirect to the works page
+                        window.location.href = "/works.html";
+                      } else {
+                        throw new Error("Error creating work");
+                      }
+                    })
+                    .catch((error) => console.error(error));
+                } else {
+                  // Affichage d'un message d'erreur si la taille de l'image est trop grande
+                  erreur_taille = document.querySelector("#erreur_taille")
+                  erreur_taille.classList.remove("remove")
+                }
+              })
+
+            });
+        });
       })
       .catch((error) => console.error(error));
   });
@@ -153,8 +226,8 @@ if (localStorage.token !== undefined) {
       .then((data) => {
         console.log(data);
         const figure_gallery = document.querySelector("#work-" + id);
-        console.log(figure_gallery)
-        if (figure) {
+        console.log(figure_gallery);
+        if (figure_gallery) {
           figure_gallery.remove();
         }
       })
