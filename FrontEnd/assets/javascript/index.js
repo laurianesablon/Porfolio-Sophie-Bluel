@@ -3,6 +3,8 @@ const objets = document.querySelector(".objets");
 const apparts = document.querySelector(".appart");
 const hotel = document.querySelector(".hotel");
 const tous = document.querySelector(".tous");
+token = localStorage.token
+console.log(token)
 //Affiche les images
 
 fetch("http://localhost:5678/api/works")
@@ -133,6 +135,7 @@ if (authentified !== undefined) {
         //icone croix retour
         icone_retour = document.querySelector(".fa-xmark");
         icone_retour.addEventListener("click", () => {
+          const modale_form = document.querySelector(".modale_form");
           modale.classList.add("remove");
           //supprimer les photos en sortant
           modale_images.innerHTML = "";
@@ -159,31 +162,34 @@ if (authentified !== undefined) {
           const photo = document.getElementById("ajout_photo");
           const category = document.getElementById("input_category");
           const title = document.getElementById("input_title");
+          const maxSize = 4000000;
+          let category_inputed = 0;
           image_input.addEventListener("change", () => {
-            fetch("http://localhost:5678/api-docs/#/default/get_categories")
+            fetch("http://localhost:5678/api/categories")
               .then((response) => response.json())
               .then((data) => {
                 const categories = data;
-                console.log(categories)
+                console.log(categories);
                 // Parcours de la liste des catégories pour récupérer l'id correspondant à la catégorie sélectionnée
                 for (let i = 0; i < categories.length; i++) {
                   if (category.value === categories[i].name) {
-                    categories[i].name = categories[i].id;
+                    category_inputed = categories[i].id;
                   }
                 }
                 // Récupération de l'image et du titre
                 const image = document.getElementById("real_image_form").files[0];
                 const titre = document.getElementById("input_title").value;
-                console.log(image);
                 // Vérification de la taille de l'image
+
                 if (image.size < maxSize) {
                   // Création du formulaire pour l'envoi des données
                   const formData = new FormData();
                   formData.append("image", image);
                   formData.append("title", titre);
-                  formData.append("category", categories[i].id);
+                  formData.append("category", category_inputed);
 
                   // Envoi des données à l'API via une requête POST
+
                   fetch("http://localhost:5678/api/works", {
                     method: "POST",
                     headers: {
@@ -191,25 +197,14 @@ if (authentified !== undefined) {
                       accept: "application/json",
                     },
                     body: formData,
-                  })
-                    .then((response) => {
-                      if (response.ok) {
-                        console.log("Work successfully created");
-                        // Redirect to the works page
-                        window.location.href = "/works.html";
-                      } else {
-                        throw new Error("Error creating work");
-                      }
-                    })
-                    .catch((error) => console.error(error));
+                  }).catch((error) => console.error(error));
                 } else {
                   // Affichage d'un message d'erreur si la taille de l'image est trop grande
-                  erreur_taille = document.querySelector("#erreur_taille")
-                  erreur_taille.classList.remove("remove")
+                  const erreur_taille = document.querySelector("#erreur_taille");
+                  //erreur_taille.classList.remove("remove");
                 }
-              })
-
-            });
+              });
+          });
         });
       })
       .catch((error) => console.error(error));
