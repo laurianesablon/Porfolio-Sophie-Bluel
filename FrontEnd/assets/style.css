@@ -347,6 +347,13 @@ input[type="file"] {
   font-size: 14px;
 }
 
+.preview {
+  width: 129px;
+  height: 169px;
+  object-fit: cover;
+  
+}
+
 #format {
   width: auto;
 }
