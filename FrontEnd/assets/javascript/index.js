@@ -1,8 +1,8 @@
 gallery = document.querySelector(".gallery");
-const objets = document.querySelector(".objets");
-const apparts = document.querySelector(".appart");
-const hotel = document.querySelector(".hotel");
-const tous = document.querySelector(".tous");
+let objets = document.querySelector(".objets");
+let apparts = document.querySelector(".appart");
+let hotel = document.querySelector(".hotel");
+let tous = document.querySelector(".tous");
 token = localStorage.token;
 let select = document.getElementById("input_category");
 
@@ -34,7 +34,7 @@ function deleteProject(id) {
     })
     .then((data) => {
       console.log(data);
-      const figure_gallery = document.querySelector("#work-" + id);
+      let figure_gallery = document.querySelector("#work-" + id);
       console.log(figure_gallery);
       if (figure_gallery) {
         figure_gallery.remove();
@@ -47,14 +47,14 @@ function deleteProject(id) {
 fetch("http://localhost:5678/api/works")
   .then((response) => response.json())
   .then((data) => {
-    const works = data;
+    let works = data;
     function afficherImage(filtre) {
       // Clear the gallery before appending new images
       gallery.innerHTML = "";
       for (let i = 0; i < filtre.length; i++) {
-        const figure = document.createElement("figure");
-        const img = document.createElement("img");
-        const figcaption = document.createElement("figcaption");
+        let figure = document.createElement("figure");
+        let img = document.createElement("img");
+        let figcaption = document.createElement("figcaption");
         img.src = filtre[i].imageUrl;
         img.alt = filtre[i].title;
         figcaption.textContent = filtre[i].title;
@@ -68,7 +68,7 @@ fetch("http://localhost:5678/api/works")
     //Boutons filtres:  très mal écrit, à optimiser
     function filtres() {
       objets.addEventListener("click", () => {
-        const objetFiltre = works.filter((work) => {
+        let objetFiltre = works.filter((work) => {
           objets.classList.add("buttonSelected");
           hotel.classList.remove("buttonSelected");
           apparts.classList.remove("buttonSelected");
@@ -79,7 +79,7 @@ fetch("http://localhost:5678/api/works")
       });
 
       apparts.addEventListener("click", () => {
-        const appartFiltre = works.filter((work) => {
+        let appartFiltre = works.filter((work) => {
           apparts.classList.add("buttonSelected");
           hotel.classList.remove("buttonSelected");
           tous.classList.remove("buttonSelected");
@@ -91,7 +91,7 @@ fetch("http://localhost:5678/api/works")
       });
 
       hotel.addEventListener("click", () => {
-        const hotelFiltre = works.filter((work) => {
+        let hotelFiltre = works.filter((work) => {
           hotel.classList.add("buttonSelected");
           tous.classList.remove("buttonSelected");
           apparts.classList.remove("buttonSelected");
@@ -119,17 +119,17 @@ fetch("http://localhost:5678/api/works")
   })
   .catch((error) => console.error(error));
 
-const authentified = localStorage.token;
+let authentified = localStorage.token;
 console.log(authentified);
 
 //gerer la page lorsque connecté
 filtres = document.querySelector("#filtres");
 if (authentified !== undefined) {
-  const modifierP = document.querySelector(".modifier_portfolio");
-  const modifierI = document.querySelector(".modifier_introduction");
-modifierI.addEventListener('click', ()=> {
-  modifierP.click();
-})
+  let modifierP = document.querySelector(".modifier_portfolio");
+  let modifierI = document.querySelector(".modifier_introduction");
+  modifierI.addEventListener("click", () => {
+    modifierP.click();
+  });
   modifierP.classList.remove("remove");
   modifierI.classList.remove("remove");
 
@@ -139,7 +139,7 @@ modifierI.addEventListener('click', ()=> {
   apparts.remove();
   hotel.remove();
   // changer le lien login en logout
-  const link_login = document.querySelector(".link_login a");
+  let link_login = document.querySelector(".link_login a");
   link_login.textContent = "logout";
   link_login.addEventListener("click", (event) => {
     event.preventDefault();
@@ -148,17 +148,17 @@ modifierI.addEventListener('click', ()=> {
   });
   //afficher la modale lorsque je clique sur modifier
   modifierP.addEventListener("click", () => {
-    const modale = document.querySelector(".modale");
+    let modale = document.querySelector(".modale");
     modale.classList.remove("remove");
-    const modale_images = document.querySelector(".modale_container_images");
+    let modale_images = document.querySelector(".modale_container_images");
     fetch("http://localhost:5678/api/works")
       .then((response) => response.json())
       .then((data) => {
-        const works = data;
+        let works = data;
         for (let i = 0; i < works.length; i++) {
-          const figure = document.createElement("figure");
-          const img = document.createElement("img");
-          const trash = document.createElement("img");
+          let figure = document.createElement("figure");
+          let img = document.createElement("img");
+          let trash = document.createElement("img");
           img.src = works[i].imageUrl;
           img.classList.add("modale_image");
           figure.appendChild(img);
@@ -174,41 +174,47 @@ modifierI.addEventListener('click', ()=> {
           figure.appendChild(trash);
         }
         //supprimer la galerie
-        let supprimer =  document.querySelector(".supprimer")
-        supprimer.addEventListener('click', ()=> {
-          const modale_supprimer = document.querySelector(".modale_supprimer")
-          const message_supprimer = document.querySelector(".message_supprimer")
-          message_supprimer.classList.remove("remove")
-          supprimer.setAttribute('id', 'oui');
-          supprimer.textContent = "OUI JE SUIS SÛR(E)"
+        let supprimer = document.querySelector(".supprimer");
+        supprimer.addEventListener("click", () => {
+          let modale_supprimer = document.querySelector(".modale_supprimer");
+          let message_supprimer = document.querySelector(".message_supprimer");
+          message_supprimer.classList.remove("remove");
+          supprimer.setAttribute("id", "oui");
+          supprimer.textContent = "OUI JE SUIS SÛR(E)";
 
-          supprimer.addEventListener("click", ()=> {
+          supprimer.addEventListener("click", () => {
             works.forEach((work) => {
-            deleteProject(work.id)
-          })
-          
-        })
-        })
-        
+              deleteProject(work.id);
+            });
+          });
+        });
+
         //icone croix retour
         icone_retour = document.querySelector(".fa-xmark");
         icone_retour.addEventListener("click", () => {
-          const modale_form = document.querySelector(".modale_form");
-          modale.classList.add("remove");
+          let modale_form = document.querySelector(".modale_form");
+          modale_form.classList.add("remove");
           //supprimer les photos en sortant
           modale_images.innerHTML = "";
           window.location.reload();
         });
-        const ajout_photo = document.querySelector(".ajout_photo");
+        let ajout_photo = document.querySelector(".ajout_photo");
         ajout_photo.addEventListener("click", () => {
-          const modale_start = document.querySelector(".modale_start");
-          const modale_form = document.querySelector(".modale_form");
+          let modale_start = document.querySelector(".modale_start");
+          let modale_form = document.querySelector(".modale_form");
           modale_start.remove();
           modale_form.classList.remove("remove");
-          let fleche = document.querySelector(".fa-arrow-left")
+          //fleche retour
+          let fleche = document.querySelector(".fa-arrow-left");
           fleche.classList.remove("white");
-          const real_form_btn = document.querySelector("#real_image_form");
-          const ajout_photo_btn = document.querySelector("#ajout_photo");
+          fleche.addEventListener("click", () => {
+            modale_form.remove();
+            const modale_container =
+              document.querySelector(".modale_container");
+            modale_container.appendChild(modale_start);
+          });
+          let real_form_btn = document.querySelector("#real_image_form");
+          let ajout_photo_btn = document.querySelector("#ajout_photo");
           icone_retour = document.querySelector(".fa-xmark");
           icone_retour.addEventListener("click", () => {
             modale.classList.add("remove");
@@ -225,10 +231,10 @@ modifierI.addEventListener('click', ()=> {
           let valider = document.querySelector(".valider");
           let image;
           let titre;
-          const formData = new FormData();
-          const preview = document.createElement("img");
-          const format = document.getElementById("format");
-          const img_container_modale = document.getElementById(
+          let formData = new FormData();
+          let preview = document.createElement("img");
+          let format = document.getElementById("format");
+          let img_container_modale = document.getElementById(
             "modale_container_form_img"
           );
           let maxSize = 4000000;
@@ -236,7 +242,7 @@ modifierI.addEventListener('click', ()=> {
 
           //montrer la preview de l'image
           function showPreview(e) {
-            const src = URL.createObjectURL(e.target.files[0]);
+            let src = URL.createObjectURL(e.target.files[0]);
             preview.classList.add("preview");
             console.log(src);
             preview.src = src;
@@ -259,7 +265,7 @@ modifierI.addEventListener('click', ()=> {
               formData.append("category", option);
             } else {
               // Affichage d'un message d'erreur si la taille de l'image est trop grande
-              const erreur_taille = document.querySelector(".erreur_taille");
+              let erreur_taille = document.querySelector(".erreur_taille");
               console.log("erreur");
               erreur_taille.classList.remove("remove");
               image.value = null;
@@ -267,7 +273,6 @@ modifierI.addEventListener('click', ()=> {
               form_container.appendChild(img_container_modale);
               form_container.appendChild(ajout_photo_btn);
               form_container.appendChild(format);
-              
             }
             // Envoi des données à l'API via une requête POST
             fetch("http://localhost:5678/api/works", {

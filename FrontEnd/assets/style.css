@@ -202,7 +202,6 @@ nav li {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  overflow: scroll;
 
 }
 .modale_start {
@@ -211,13 +210,18 @@ nav li {
 }
 
 .modale_top {
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-
+  gap: 560px;
 }
 
 .modale i.fa-xmark {
+  font-size: 24px;
+  z-index: 20;
+}
+
+.modale i.fa-arrow-left {
   font-size: 24px;
   z-index: 20;
 }
@@ -263,7 +267,7 @@ nav li {
 hr {
   width: 420px;
   color: #b3b3b3;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .modale button {
   margin: 0 auto;
@@ -294,6 +298,7 @@ hr {
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  text-align: center;
 
 }
 .modale_supprimer p{
@@ -334,15 +339,9 @@ margin-top: 10px;
   align-items: center;
   margin-bottom: 20px;
 }
-.modale_top {
-  width: 120%;
-}
 
-.modale_form .modale_top {
-  display: flex;
-  justify-content: center;
-  gap: 562px;
-}
+
+
 
 .modale_container_form img {
   margin-top: 30px;
