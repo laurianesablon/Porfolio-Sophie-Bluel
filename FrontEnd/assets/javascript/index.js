@@ -6,7 +6,6 @@ const tous = document.querySelector(".tous");
 token = localStorage.token;
 let select = document.getElementById("input_category");
 
-//Affiche les images
 window.addEventListener("load", () => {
   fetch("http://localhost:5678/api/categories")
     .then((response) => response.json())
@@ -43,6 +42,7 @@ function deleteProject(id) {
     })
     .catch((err) => console.log("Il y a un problème : " + err));
 }
+//Affiche les images
 
 fetch("http://localhost:5678/api/works")
   .then((response) => response.json())
@@ -127,7 +127,9 @@ filtres = document.querySelector("#filtres");
 if (authentified !== undefined) {
   const modifierP = document.querySelector(".modifier_portfolio");
   const modifierI = document.querySelector(".modifier_introduction");
-
+modifierI.addEventListener('click', ()=> {
+  modifierP.click();
+})
   modifierP.classList.remove("remove");
   modifierI.classList.remove("remove");
 
@@ -171,6 +173,23 @@ if (authentified !== undefined) {
           modale_images.appendChild(figure);
           figure.appendChild(trash);
         }
+        //supprimer la galerie
+        let supprimer =  document.querySelector(".supprimer")
+        supprimer.addEventListener('click', ()=> {
+          const modale_supprimer = document.querySelector(".modale_supprimer")
+          const message_supprimer = document.querySelector(".message_supprimer")
+          message_supprimer.classList.remove("remove")
+          supprimer.setAttribute('id', 'oui');
+          supprimer.textContent = "OUI JE SUIS SÛR(E)"
+
+          supprimer.addEventListener("click", ()=> {
+            works.forEach((work) => {
+            deleteProject(work.id)
+          })
+          
+        })
+        })
+        
         //icone croix retour
         icone_retour = document.querySelector(".fa-xmark");
         icone_retour.addEventListener("click", () => {
@@ -186,6 +205,8 @@ if (authentified !== undefined) {
           const modale_form = document.querySelector(".modale_form");
           modale_start.remove();
           modale_form.classList.remove("remove");
+          let fleche = document.querySelector(".fa-arrow-left")
+          fleche.classList.remove("white");
           const real_form_btn = document.querySelector("#real_image_form");
           const ajout_photo_btn = document.querySelector("#ajout_photo");
           icone_retour = document.querySelector(".fa-xmark");
@@ -205,26 +226,29 @@ if (authentified !== undefined) {
           let image;
           let titre;
           const formData = new FormData();
-
+          const preview = document.createElement("img");
+          const format = document.getElementById("format");
+          const img_container_modale = document.getElementById(
+            "modale_container_form_img"
+          );
           let maxSize = 4000000;
           let category_inputed = 0;
 
           //montrer la preview de l'image
           function showPreview(e) {
             const src = URL.createObjectURL(e.target.files[0]);
-            const preview = document.createElement("img");
-            preview.classList.add("preview")
-            console.log(src)
+            preview.classList.add("preview");
+            console.log(src);
             preview.src = src;
-            form_container.innerHTML = "";
 
+            format.remove();
+            img_container_modale.remove();
+            ajout_photo_btn.remove();
             form_container.appendChild(preview);
-            console.log(files);
           }
 
           real_form_btn.addEventListener("change", (e) => {
             showPreview(e);
-            
           });
 
           function createForm() {
@@ -235,8 +259,15 @@ if (authentified !== undefined) {
               formData.append("category", option);
             } else {
               // Affichage d'un message d'erreur si la taille de l'image est trop grande
-              const erreur_taille = document.querySelector("#erreur_taille");
-              //erreur_taille.classList.remove("remove");
+              const erreur_taille = document.querySelector(".erreur_taille");
+              console.log("erreur");
+              erreur_taille.classList.remove("remove");
+              image.value = null;
+              preview.remove();
+              form_container.appendChild(img_container_modale);
+              form_container.appendChild(ajout_photo_btn);
+              form_container.appendChild(format);
+              
             }
             // Envoi des données à l'API via une requête POST
             fetch("http://localhost:5678/api/works", {
@@ -253,17 +284,21 @@ if (authentified !== undefined) {
             function envoiRequete() {
               titre = document.getElementById("input_title").value;
               image = document.getElementById("real_image_form").files[0];
+              console.log(image);
               option = document.getElementById("input_category").value;
-             
-              console.log(titre)
-              console.log(image)
-              console.log(option)
 
-              if(titre !== undefined && image !== undefined && option !== undefined){
+              console.log(titre);
+              console.log(image);
+              console.log(option);
+
+              if (
+                titre !== undefined &&
+                image !== undefined &&
+                option !== undefined
+              ) {
                 createForm();
-
               } else {
-                console.log("error")
+                console.log("error");
               }
             }
             envoiRequete();

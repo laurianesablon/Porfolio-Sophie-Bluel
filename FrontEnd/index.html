@@ -26,6 +26,8 @@
       <div class="modale_container">
         <div class="modale_start">
           <div class="modale_top">
+            <i class="fa-solid fa-arrow-left white"></i>
+
             <i class="fa-sharp fa-solid fa-xmark red"></i>
           </div>
 
@@ -34,6 +36,10 @@
           <hr />
           <button class="ajout_photo">Ajouter une photo</button>
           <p class="supprimer">Supprimer la galerie</p>
+         <aside class="modale_supprimer ">
+          <p class="message_supprimer remove">Êtes vous sûr de vouloir supprimer toute la galerie? Cette action est <span>IRREVERSIBLE</span></p>
+         
+         </aside> 
         </div>
 
         <!--Modale: Ajouter une photo-->
@@ -46,7 +52,7 @@
           <h3 class="modale_titre">Ajout Photo</h3>
 
           <div class="modale_container_form">
-            <img src="assets/icons/modale_ajouter_image.svg" />
+            <img id="modale_container_form_img" src="assets/icons/modale_ajouter_image.svg" />
             <input
               type="file"
               id="real_image_form"
@@ -57,7 +63,7 @@
             <button id="ajout_photo">+ Ajouter Photo</button>
             <p id="format">jpg, png: 4mo max</p>
           </div>
-          <p id="erreur_taille remove">Image trop volumineuse</p>
+          <p class="erreur_taille remove">Veuillez selectionner une image de moins de 4mo</p>
           <p>Titre</p>
           <input type="text" id="input_title" name="input_title">
           <p>Catégorie</p>
