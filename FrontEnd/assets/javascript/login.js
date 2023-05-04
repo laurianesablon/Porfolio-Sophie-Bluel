@@ -25,13 +25,16 @@ form.addEventListener("submit", (e) => {
         window.location.href = "index.html";
         window.localStorage.setItem("token", `${data.token}`);
       } else {
+        //TODO:
+        //ajouter un message d'erreur
+        //ajouter du padding
         email.style.border = "1px solid red";
         email.classList.add("shake");
         password.style.border = "1px solid red";
         password.classList.add("shake");
         form.addEventListener("animationend", () => {
           email.classList.remove("shake");
-          form.classList.remove("shake");
+          password.classList.remove("shake");
         });
       }
     })

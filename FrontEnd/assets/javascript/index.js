@@ -6,6 +6,11 @@ let tous = document.querySelector(".tous");
 token = localStorage.token;
 let select = document.getElementById("input_category");
 
+//TODO
+//Revoir le nom des variables
+// Separer mon code en petites fonctions/fichier (modale, filtre...)
+//mettre fonctions et addeventlistener en racine
+//creer un fichier dans lequel faire tout mes calls (creer 5 fonctions pour mes 5 calls api )
 window.addEventListener("load", () => {
   fetch("http://localhost:5678/api/categories")
     .then((response) => response.json())
@@ -48,74 +53,8 @@ fetch("http://localhost:5678/api/works")
   .then((response) => response.json())
   .then((data) => {
     let works = data;
-    function afficherImage(filtre) {
-      // Clear the gallery before appending new images
-      gallery.innerHTML = "";
-      for (let i = 0; i < filtre.length; i++) {
-        let figure = document.createElement("figure");
-        let img = document.createElement("img");
-        let figcaption = document.createElement("figcaption");
-        img.src = filtre[i].imageUrl;
-        img.alt = filtre[i].title;
-        figcaption.textContent = filtre[i].title;
-        figure.id = "work-" + filtre[i].id;
-        figure.appendChild(img);
-        figure.appendChild(figcaption);
-        gallery.appendChild(figure);
-      }
-    }
-
-    //Boutons filtres:  très mal écrit, à optimiser
-    function filtres() {
-      objets.addEventListener("click", () => {
-        let objetFiltre = works.filter((work) => {
-          objets.classList.add("buttonSelected");
-          hotel.classList.remove("buttonSelected");
-          apparts.classList.remove("buttonSelected");
-          tous.classList.remove("buttonSelected");
-          return work.category.name === "Objets";
-        });
-        afficherImage(objetFiltre);
-      });
-
-      apparts.addEventListener("click", () => {
-        let appartFiltre = works.filter((work) => {
-          apparts.classList.add("buttonSelected");
-          hotel.classList.remove("buttonSelected");
-          tous.classList.remove("buttonSelected");
-          objets.classList.remove("buttonSelected");
-
-          return work.category.name === "Appartements";
-        });
-        afficherImage(appartFiltre);
-      });
-
-      hotel.addEventListener("click", () => {
-        let hotelFiltre = works.filter((work) => {
-          hotel.classList.add("buttonSelected");
-          tous.classList.remove("buttonSelected");
-          apparts.classList.remove("buttonSelected");
-          objets.classList.remove("buttonSelected");
-
-          return work.category.name === "Hotels & restaurants";
-        });
-        afficherImage(hotelFiltre);
-      });
-
-      tous.addEventListener("click", () => {
-        // Clear the gallery before showing all images
-        tous.classList.add("buttonSelected");
-        hotel.classList.remove("buttonSelected");
-        apparts.classList.remove("buttonSelected");
-        objets.classList.remove("buttonSelected");
-
-        gallery.innerHTML = "";
-        afficherImage(works);
-      });
-    }
-
-    filtres();
-    afficherImage(works); // display all images at the beginning
+    afficherImage(works);
+    filtres(works);
   })
   .catch((error) => console.error(error));
 
@@ -127,8 +66,22 @@ filtres = document.querySelector("#filtres");
 if (authentified !== undefined) {
   let modifierP = document.querySelector(".modifier_portfolio");
   let modifierI = document.querySelector(".modifier_introduction");
-  modifierI.addEventListener("click", () => {
-    modifierP.click();
+  modifierI.addEventListener("click", (e) => {
+    let header_image = document.createElement("input");
+    header_image.type = "file";
+    header_image.id = "header_img";
+    header_image.name = "header_img";
+    header_image.accept = "image/png, image/jpg";
+    header_image.click();
+    let figure = document.querySelector(".figure");
+    let photo_sb = document.querySelector(".photo_sb");
+    figure.appendChild(header_image);
+    header_image.addEventListener("change", () => {
+      let src = URL.createObjectURL(e.target.files[0]);
+      photo_sb.classList.add("preview");
+      console.log(src);
+      photo_sb.src = src;
+    });
   });
   modifierP.classList.remove("remove");
   modifierI.classList.remove("remove");
