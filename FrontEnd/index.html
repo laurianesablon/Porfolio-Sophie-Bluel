@@ -10,12 +10,14 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="./assets/style.css" />
-    <script src="./assets/javascript/index.js" defer ></script>
-    <script src="./assets/javascript/filtres.js" defer ></script>
-    <script src="./assets/javascript/getWorks.js" defer ></script>
-
+    <meta name="description" content=""/>
+    <link rel="stylesheet" href="./assets/style.css"/>
+    <script src="./assets/javascript/filtres.js"></script>
+    <script src="./assets/javascript/getWorks.js"></script>
+    <script src="./assets/javascript/deleteProject.js"></script>
+    <script src="./assets/javascript/getCategories.js"></script>
+    <script src="./assets/javascript/postWorks.js"></script>
+    <script src="./assets/javascript/index.js" defer></script>
 
     <link
       rel="stylesheet"
@@ -40,14 +42,16 @@
           <hr />
           <button class="ajout_photo">Ajouter une photo</button>
           <p class="supprimer">Supprimer la galerie</p>
-         <aside class="modale_supprimer ">
-          <p class="message_supprimer remove">Êtes vous sûr de vouloir supprimer toute la galerie?<br> Cette action est <span>IRREVERSIBLE</span></p>
-         
-         </aside> 
+          <aside class="modale_supprimer">
+            <p class="message_supprimer remove">
+              Êtes vous sûr de vouloir supprimer toute la galerie?<br />
+              Cette action est <span>IRREVERSIBLE</span>
+            </p>
+          </aside>
         </div>
 
         <!--Modale: Ajouter une photo-->
-        <div class="modale_form remove">
+        <div class="modale_form">
           <div class="modale_top">
             <i class="fa-solid fa-arrow-left"></i>
             <i class="fa-sharp fa-solid fa-xmark red"></i>
@@ -56,7 +60,10 @@
           <h3 class="modale_titre">Ajout Photo</h3>
 
           <div class="modale_container_form">
-            <img id="modale_container_form_img" src="assets/icons/modale_ajouter_image.svg" />
+            <img
+              id="modale_container_form_img"
+              src="assets/icons/modale_ajouter_image.svg"
+            />
             <input
               type="file"
               id="real_image_form"
@@ -67,22 +74,18 @@
             <button id="ajout_photo">+ Ajouter Photo</button>
             <p id="format">jpg, png: 4mo max</p>
           </div>
-          <p class="erreur_taille remove">Veuillez selectionner une image de moins de 4mo</p>
+          <p class="erreur_taille remove">
+            Veuillez selectionner une image de moins de 4mo
+          </p>
           <p>Titre</p>
-          <input type="text" id="input_title" name="input_title">
+          <input type="text" id="input_title" name="input_title" />
           <p>Catégorie</p>
-          <select
-          name="input_category"
-          id="input_category"
-          class="modal_input"
-        >
-          <!-- Options pour les catégories -->
-          <option class="option" disabled selected>Choisir une option</option>
-          
-        </select>
-      
+          <select name="input_category" id="input_category" class="modal_input">
+            <!-- Options pour les catégories -->
+            <option class="option" disabled selected>Choisir une option</option>
+          </select>
 
-          <hr/>
+          <hr />
           <button class="valider" type="submit">Valider</button>
         </div>
       </div>

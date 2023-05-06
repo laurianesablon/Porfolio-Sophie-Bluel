@@ -32,10 +32,14 @@ form.addEventListener("submit", (e) => {
         email.classList.add("shake");
         password.style.border = "1px solid red";
         password.classList.add("shake");
+        let message_erreur = document.querySelector(".message_erreur_login")
+        message_erreur.classList.remove("remove")
+        
         form.addEventListener("animationend", () => {
           email.classList.remove("shake");
           password.classList.remove("shake");
         });
+
       }
     })
     .catch((error) => {

@@ -1,9 +1,8 @@
-function getWorks() {
-  return fetch("http://localhost:5678/api/works")
+function getCategories() {
+  return fetch("http://localhost:5678/api/categories")
     .then((response) => response.json())
     .then((data) => {
-      let works = data;
-      return works;
+        return data;
     })
     .catch((error) => console.error(error));
 }
