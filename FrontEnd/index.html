@@ -28,8 +28,7 @@
     />
   </head>
   <body>
-    <aside class="modale remove">
-      <div class="modale_container">
+    <dialog class="modale">
         <div class="modale_start">
           <div class="modale_top">
             <i class="fa-solid fa-arrow-left white"></i>
@@ -38,7 +37,7 @@
           </div>
 
           <h3 class="modale_titre">Galerie Photo</h3>
-          <div class="modale_container_images"></div>
+          <div class="modale_images"></div>
           <hr />
           <button class="ajout_photo">Ajouter une photo</button>
           <p class="supprimer">Supprimer la galerie</p>
@@ -59,9 +58,9 @@
 
           <h3 class="modale_titre">Ajout Photo</h3>
 
-          <div class="modale_container_form">
+          <div class="modale_form">
             <img
-              id="modale_container_form_img"
+              id="modale_form_img"
               src="assets/icons/modale_ajouter_image.svg"
             />
             <input
@@ -88,8 +87,7 @@
           <hr />
           <button class="valider" type="submit">Valider</button>
         </div>
-      </div>
-    </aside>
+    </dialog>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>

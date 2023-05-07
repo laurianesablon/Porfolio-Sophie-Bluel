@@ -14,7 +14,6 @@ let select_category_options = document.getElementById("input_category");
 
 window.addEventListener("load", () => {
   getCategories().then((data) => {
-    console.log(data)
     data.forEach((categorie) => {
       let option = document.createElement("option");
       option.value = categorie.id;
@@ -46,6 +45,7 @@ function afficherImages(filtre) {
 getWorks().then((works) => {
   afficherImages(works);
   Filtres(works);
+
 });
 
 let authentified = localStorage.token;
@@ -77,9 +77,9 @@ if (authentified !== undefined) {
     let modale = document.querySelector(".modale");
     let modale_form = document.querySelector(".modale_form");
     let modale_start = document.querySelector(".modale_start");
-    modale.classList.remove("remove");
+    modale.showModal()
     modale_form.remove();
-    let modale_images = document.querySelector(".modale_container_images");
+    let modale_images = document.querySelector(".modale_images");
     getWorks().then((works) => {
         for (let i = 0; i < works.length; i++) {
           let figure = document.createElement("figure");
@@ -91,7 +91,9 @@ if (authentified !== undefined) {
           //bouton poubelle (delete)
           trash.src = "./assets/icons/trash.svg";
           trash.classList.add("modale_image_trash");
+
           trash.addEventListener("click", () => {
+            //fonctionne avec live server mais pas en mode normal?
           deleteProject(works[i].id);
             // Remove the work from the DOM
             modale_images.removeChild(figure);
@@ -126,17 +128,17 @@ if (authentified !== undefined) {
           window.location.reload();
         });
         let ajout_photo = document.querySelector(".ajout_photo");
-        let modale_container = document.querySelector(".modale_container");
+        let modale = document.querySelector(".modale");
 
         ajout_photo.addEventListener("click", () => {
           modale_start.remove();
-          modale_container.appendChild(modale_form)
+          modale.appendChild(modale_form)
           //fleche retour
           let fleche = document.querySelector(".fa-arrow-left");
           fleche.classList.remove("white");
           fleche.addEventListener("click", () => {
             modale_form.remove();
-          modale_container.appendChild(modale_start)
+          modale.appendChild(modale_start)
           });
           let real_form_btn = document.querySelector("#real_image_form");
           let ajout_photo_btn = document.querySelector("#ajout_photo");
@@ -152,7 +154,7 @@ if (authentified !== undefined) {
           });
           // envoi du formulaire
           image_input = document.querySelector("#real_image_form");
-          form_container = document.querySelector(".modale_container_form");
+          form_container = document.querySelector(".modale_form");
           let valider = document.querySelector(".valider");
           let image;
           let titre;
@@ -160,7 +162,7 @@ if (authentified !== undefined) {
           let preview = document.createElement("img");
           let format = document.getElementById("format");
           let img_container_modale = document.getElementById(
-            "modale_container_form_img"
+            "modale_form_img"
           );
           let maxSize = 4000000;
 
