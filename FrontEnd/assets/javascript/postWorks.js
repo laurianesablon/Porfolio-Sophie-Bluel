@@ -7,4 +7,5 @@ function postWorks(token,formData){
         },
         body: formData,
       }).catch((error) => console.error(error));
+      console.log("Fonction postWorks ok")
 }

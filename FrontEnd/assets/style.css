@@ -310,7 +310,7 @@ margin-top: 10px;
   padding: 10px;
   font-size:  13px;
 }
-.modale_form {
+.modale_form_container {
   display: flex;
   flex-direction: column;
 }
@@ -325,9 +325,10 @@ margin-top: 10px;
   align-items: center;
   margin-bottom: 20px;
 }
-
-
-
+.input_description {
+  width: 420px;
+  margin: 0 auto;
+}
 
 #modale_form_img {
   margin-top: 30px;
