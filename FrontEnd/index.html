@@ -10,8 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
-    <meta name="description" content=""/>
-    <link rel="stylesheet" href="./assets/style.css"/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
     <script src="./assets/javascript/filtres.js"></script>
     <script src="./assets/javascript/getWorks.js"></script>
     <script src="./assets/javascript/deleteProject.js"></script>
@@ -29,59 +29,66 @@
   </head>
   <body>
     <dialog class="modale">
-        <div class="modale_start">
-          <div class="modale_top">
-            <i class="fa-solid fa-arrow-left white"></i>
+      <div class="modale_start">
+        <div class="modale_top">
+          <i class="fa-solid fa-arrow-left white"></i>
 
-            <i class="fa-sharp fa-solid fa-xmark red"></i>
-          </div>
-
-          <h3 class="modale_titre">Galerie Photo</h3>
-          <div class="modale_images"></div>
-          <hr />
-          <button class="ajout_photo">Ajouter une photo</button>
-          <p class="supprimer">Supprimer la galerie</p>
-          <aside class="modale_supprimer">
-            <p class="message_supprimer remove">
-              Êtes vous sûr de vouloir supprimer toute la galerie?<br />
-              Cette action est <span>IRREVERSIBLE</span>
-            </p>
-          </aside>
+          <i class="fa-sharp fa-solid fa-xmark red"></i>
         </div>
 
-        <!--Modale: Ajouter une photo-->
-        <div class="modale_form_container">
-          <div class="modale_top">
-            <i class="fa-solid fa-arrow-left"></i>
-            <i class="fa-sharp fa-solid fa-xmark red"></i>
-          </div>
-
-          <h3 class="modale_titre">Ajout Photo</h3>
-
-          <div class="modale_form">
-            <img
-              id="modale_form_img"
-              src="assets/icons/modale_ajouter_image.svg"
-            />
-            <input type="file" id="real_image_form" name="image_form" aria-hidden="true"
-              accept="image/png, image/jpg"/>
-            <button id="ajout_photo">+ Ajouter Photo</button>
-            <p id="format">jpg, png: 4mo max</p>
-          </div>
-          <p class="erreur_taille remove">
-            Veuillez selectionner une image de moins de 4mo
+        <h3 class="modale_titre">Galerie Photo</h3>
+        <div class="modale_images"></div>
+        <hr />
+        <button class="ajout_photo">Ajouter une photo</button>
+        <p class="supprimer">Supprimer la galerie</p>
+        <dialog class="modale_supprimer">
+          <p class="modale_supprimer_gallerie">
+            Êtes vous sûr de vouloir supprimer toute la galerie?<br />
+            Cette action est <span>IRREVERSIBLE</span>
+            <button id="oui" >OUI</button>
+            <button id="non">NON</button>
           </p>
-          <p class="input_description">Titre</p>
-          <input type="text" id="input_title" name="input_title" />
-          <p class="input_description">Catégorie</p>
-          <select name="input_category" id="input_category" class="modal_input">
-            <!-- Options pour les catégories -->
-            <option class="option" disabled selected>Choisir une option</option>
-          </select>
+        </dialog>
+      </div>
 
-          <hr />
-          <button class="valider" type="submit">Valider</button>
+      <!--Modale: Ajouter une photo-->
+      <div class="modale_form_container">
+        <div class="modale_top">
+          <i class="fa-solid fa-arrow-left"></i>
+          <i class="fa-sharp fa-solid fa-xmark red"></i>
         </div>
+
+        <h3 class="modale_titre">Ajout Photo</h3>
+
+        <div class="modale_form">
+          <img
+            id="modale_form_img"
+            src="assets/icons/modale_ajouter_image.svg"
+          />
+          <input
+            type="file"
+            id="real_image_form"
+            name="image_form"
+            aria-hidden="true"
+            accept="image/png, image/jpg"
+          />
+          <button id="ajout_photo">+ Ajouter Photo</button>
+          <p id="format">jpg, png: 4mo max</p>
+        </div>
+        <p class="erreur_taille remove">
+          Veuillez selectionner une image de moins de 4mo
+        </p>
+        <p class="input_description">Titre</p>
+        <input type="text" id="input_title" name="input_title" />
+        <p class="input_description">Catégorie</p>
+        <select name="input_category" id="input_category" class="modal_input">
+          <!-- Options pour les catégories -->
+          <option class="option" disabled selected>Choisir une option</option>
+        </select>
+
+        <hr />
+        <button class="valider" type="submit">Valider</button>
+      </div>
     </dialog>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>

@@ -75,6 +75,9 @@ if (authentified !== undefined) {
     let modale = document.querySelector(".modale");
     let modale_form = document.querySelector(".modale_form_container");
     let modale_start = document.querySelector(".modale_start");
+    let modale_supprimer_gallerie = document.querySelector(".modale_supprimer"
+    );
+    //modale_supprimer_gallerie.close();
     modale.showModal();
     modale_form.remove();
     let modale_images = document.querySelector(".modale_images");
@@ -101,11 +104,15 @@ if (authentified !== undefined) {
       }
       //supprimer la galerie
       let supprimer = document.querySelector(".supprimer");
+      let bouton_oui = document.querySelector("#oui");
+      let bouton_non = document.querySelector("#non");
+
       supprimer.addEventListener("click", () => {
-        let message_supprimer = document.querySelector(".message_supprimer");
-        message_supprimer.classList.remove("remove");
-        supprimer.setAttribute("id", "oui");
-        supprimer.textContent = "OUI JE SUIS SÛR(E)";
+        modale_supprimer_gallerie.showModal();
+        bouton_non.addEventListener('click', ()=> {
+          modale_supprimer_gallerie.close()
+        })
+
 
         supprimer.addEventListener("click", () => {
           works.forEach((work) => {
@@ -114,7 +121,7 @@ if (authentified !== undefined) {
         });
       });
 
-      //icone croix retour
+      //icone croix
       remove_modal_icon = document.querySelector(".fa-xmark");
       remove_modal_icon.addEventListener("click", () => {
         modale_start.remove();
@@ -124,8 +131,8 @@ if (authentified !== undefined) {
         modale_images.innerHTML = "";
         window.location.reload();
       });
-      let ajout_photo = document.querySelector(".ajout_photo");
       let modale = document.querySelector(".modale");
+      let ajout_photo = document.querySelector(".ajout_photo");
 
       ajout_photo.addEventListener("click", () => {
         modale_start.remove();
@@ -182,7 +189,7 @@ if (authentified !== undefined) {
             formData.append("image", image);
             formData.append("title", titre);
             formData.append("category", option);
-            console.log("creation du form")
+            console.log("creation du form");
           } else {
             // Affichage d'un message d'erreur si la taille de l'image est trop grande
             let erreur_taille = document.querySelector(".erreur_taille");

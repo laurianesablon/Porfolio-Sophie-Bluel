@@ -190,6 +190,10 @@ nav li {
   border: none;
 
 }
+
+.modale::backdrop{
+  background-color: #00000092;
+}
 .modale_start {
   display: flex;
   flex-direction: column;
@@ -275,10 +279,17 @@ hr {
   text-align: center;
   font-weight: 300;
   font-size: 14px;
-
+}
+.modale_supprimer {
+    border: none;
+    border-radius: 12px;
 
 }
-.modale_supprimer{
+
+.modale_supprimer::backdrop{
+  background-color: hsla(0, 0%, 0%, 0.702);
+}
+.modale_supprimer_gallerie{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -287,20 +298,32 @@ hr {
   text-align: center;
 
 }
-.modale_supprimer p{
+.modale_supprimer_gallerie p{
   font-size: 15px;
 }
 
-.modale_supprimer span {
+.modale_supprimer_gallerie span {
   color:#d65353;
 }
 
-.modale_supprimer button {
+.modale_supprimer_gallerie button {
 margin-top: 10px;
 }
 
 #oui {
   background-color: #d65353 ;
+  color: white;
+  border: none;
+  width: 150px;
+  border-radius: 50px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 10px;
+  font-size:  13px;
+}
+
+#non {
+  background-color: #1d6154 ;
   color: white;
   border: none;
   width: 150px;
