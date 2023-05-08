@@ -94,10 +94,12 @@ if (authentified !== undefined) {
         trash.classList.add("modale_image_trash");
 
         trash.addEventListener("click", () => {
-          //fonctionne avec live server mais pas en mode normal?
           deleteProject(works[i].id);
           // Remove the work from the DOM
           modale_images.removeChild(figure);
+          //reload the page
+          window.location.reload();
+
         });
         modale_images.appendChild(figure);
         figure.appendChild(trash);
@@ -114,7 +116,7 @@ if (authentified !== undefined) {
         })
 
 
-        supprimer.addEventListener("click", () => {
+        bouton_oui.addEventListener("click", () => {
           works.forEach((work) => {
             deleteProject(work.id);
           });
@@ -203,6 +205,7 @@ if (authentified !== undefined) {
           }
           // Envoi des données à l'API via une requête POST
           postWorks(token, formData);
+
         }
 
         valider.addEventListener("click", () => {
