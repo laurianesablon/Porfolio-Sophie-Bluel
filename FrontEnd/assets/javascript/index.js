@@ -98,7 +98,6 @@ if (authentified !== undefined) {
           // Remove the work from the DOM
           modale_images.removeChild(figure);
           //reload the page
-          window.location.reload();
 
         });
         modale_images.appendChild(figure);
