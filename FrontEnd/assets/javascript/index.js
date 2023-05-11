@@ -75,8 +75,7 @@ if (authentified !== undefined) {
     let modale = document.querySelector(".modale");
     let modale_form = document.querySelector(".modale_form_container");
     let modale_start = document.querySelector(".modale_start");
-    let modale_supprimer_gallerie = document.querySelector(".modale_supprimer"
-    );
+    let modale_supprimer_gallerie = document.querySelector(".modale_supprimer");
     //modale_supprimer_gallerie.close();
     modale.showModal();
     modale_form.remove();
@@ -97,8 +96,6 @@ if (authentified !== undefined) {
           deleteProject(works[i].id);
           // Remove the work from the DOM
           modale_images.removeChild(figure);
-          //reload the page
-
         });
         modale_images.appendChild(figure);
         figure.appendChild(trash);
@@ -110,15 +107,15 @@ if (authentified !== undefined) {
 
       supprimer.addEventListener("click", () => {
         modale_supprimer_gallerie.showModal();
-        bouton_non.addEventListener('click', ()=> {
-          modale_supprimer_gallerie.close()
-        })
-
-
+        bouton_non.addEventListener("click", () => {
+          modale_supprimer_gallerie.close();
+        });
         bouton_oui.addEventListener("click", () => {
           works.forEach((work) => {
             deleteProject(work.id);
           });
+          modale.close();
+          modale_supprimer_gallerie.close();
         });
       });
 
@@ -179,32 +176,35 @@ if (authentified !== undefined) {
           ajout_photo_btn.remove();
           form_container.appendChild(preview);
         }
+            let erreur_taille = document.querySelector(".erreur_taille");
 
         real_form_btn.addEventListener("change", (e) => {
-          showPreview(e);
+          if (e.target.files[0].size >= maxSize) {
+            erreur_taille.classList.remove("remove");
+            preview.remove();
+            console.log(e.target.files[0].size);
+            image.value = null;
+            console.log("erreur");
+
+            //TODO
+            // afficher erreur a cet endroit là
+          } else {
+            showPreview(e);
+          }
         });
 
         function createForm() {
           if (image.size < maxSize) {
             // Création du formulaire pour l'envoi des données
+            erreur_taille.classList.add("remove");
+
             formData.append("image", image);
             formData.append("title", titre);
             formData.append("category", option);
             console.log("creation du form");
-          } else {
-            // Affichage d'un message d'erreur si la taille de l'image est trop grande
-            let erreur_taille = document.querySelector(".erreur_taille");
-            console.log("erreur");
-            erreur_taille.classList.remove("remove");
-            image.value = null;
-            preview.remove();
-            form_container.appendChild(img_container_modale);
-            form_container.appendChild(ajout_photo_btn);
-            form_container.appendChild(format);
-          }
+          } 
           // Envoi des données à l'API via une requête POST
           postWorks(token, formData);
-
         }
 
         valider.addEventListener("click", () => {

@@ -1,4 +1,5 @@
 function postWorks(token,formData){
+  console.log(formData)
     fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
@@ -6,6 +7,7 @@ function postWorks(token,formData){
           accept: "application/json",
         },
         body: formData,
-      }).catch((error) => console.error(error));
-      console.log("Fonction postWorks ok")
+      }).then(() => window.location.reload())
+      .catch((error) => console.error(error));
+      console.log("Fonction postWorks ok");
 }
