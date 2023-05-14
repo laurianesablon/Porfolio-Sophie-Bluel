@@ -5,7 +5,7 @@ let apparts = document.querySelector(".appart");
 let hotel = document.querySelector(".hotel");
 let tous = document.querySelector(".tous");
 let select_category_options = document.getElementById("input_category");
-
+let loader = document.querySelector(".loader");
 //TODO
 //Revoir le nom des variables
 // Separer mon code en petites fonctions/fichier (modale, filtre...)
@@ -47,7 +47,6 @@ getWorks().then((works) => {
 });
 
 let authentified = localStorage.token;
-console.log(authentified);
 //gerer la page lorsque connecté
 if (authentified !== undefined) {
   let filtres = document.querySelector(".filtres");
@@ -111,11 +110,19 @@ if (authentified !== undefined) {
           modale_supprimer_gallerie.close();
         });
         bouton_oui.addEventListener("click", () => {
+          let numWorks = works.length;
+          let i = 0;
+          loader.classList.add("remove"); // show loader
           works.forEach((work) => {
-            deleteProject(work.id);
+            deleteProject(work.id, () => {
+              i++;
+              if (i === numWorks) {
+                loader.remove(); // remove loader
+                modale.close();
+                modale_supprimer_gallerie.close();
+              }
+            });
           });
-          modale.close();
-          modale_supprimer_gallerie.close();
         });
       });
 
@@ -168,7 +175,6 @@ if (authentified !== undefined) {
         function showPreview(e) {
           let src = URL.createObjectURL(e.target.files[0]);
           preview.classList.add("preview");
-          console.log(src);
           preview.src = src;
 
           format.remove();
@@ -176,18 +182,12 @@ if (authentified !== undefined) {
           ajout_photo_btn.remove();
           form_container.appendChild(preview);
         }
-            let erreur_taille = document.querySelector(".erreur_taille");
+        let erreur_taille = document.querySelector(".erreur_taille");
 
         real_form_btn.addEventListener("change", (e) => {
           if (e.target.files[0].size >= maxSize) {
             erreur_taille.classList.remove("remove");
             preview.remove();
-            console.log(e.target.files[0].size);
-            image.value = null;
-            console.log("erreur");
-
-            //TODO
-            // afficher erreur a cet endroit là
           } else {
             showPreview(e);
           }
@@ -196,13 +196,12 @@ if (authentified !== undefined) {
         function createForm() {
           if (image.size < maxSize) {
             // Création du formulaire pour l'envoi des données
-            erreur_taille.classList.add("remove");
+            erreur_taille.remove();
 
             formData.append("image", image);
             formData.append("title", titre);
             formData.append("category", option);
-            console.log("creation du form");
-          } 
+          }
           // Envoi des données à l'API via une requête POST
           postWorks(token, formData);
         }
@@ -214,13 +213,15 @@ if (authentified !== undefined) {
             option = document.getElementById("input_category").value;
 
             if (
-              titre !== undefined &&
-              image !== undefined &&
-              option !== undefined
-            ) {
+              titre !== undefined ||
+              image !== undefined ||
+              option !== undefined) {
               createForm();
             } else {
-              console.log("Veuillez remplir tout le formulaire");
+              let message_erreur_formulaire = document.querySelector(
+                ".message_erreur_formulaire"
+              );
+              message_erreur_formulaire.classList.remove("remove");
             }
           }
           envoiRequete();

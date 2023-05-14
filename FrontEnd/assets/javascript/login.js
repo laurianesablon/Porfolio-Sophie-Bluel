@@ -9,7 +9,6 @@ form.addEventListener("submit", (e) => {
     password: password.value,
   };
 
-  console.log(login);
 
   fetch("http://localhost:5678/api/users/login", {
     method: "POST",

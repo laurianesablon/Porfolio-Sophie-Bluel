@@ -1,5 +1,4 @@
 function postWorks(token,formData){
-  console.log(formData)
     fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
@@ -9,5 +8,4 @@ function postWorks(token,formData){
         body: formData,
       }).then(() => window.location.reload())
       .catch((error) => console.error(error));
-      console.log("Fonction postWorks ok");
 }

@@ -188,10 +188,9 @@ nav li {
   padding: 20px;
   border-radius: 10px;
   border: none;
-
 }
 
-.modale::backdrop{
+.modale::backdrop {
   background-color: #00000092;
 }
 .modale_start {
@@ -281,37 +280,35 @@ hr {
   font-size: 14px;
 }
 .modale_supprimer {
-    border: none;
-    border-radius: 12px;
-
+  border: none;
+  border-radius: 12px;
 }
 
-.modale_supprimer::backdrop{
+.modale_supprimer::backdrop {
   background-color: hsla(0, 0%, 0%, 0.702);
 }
-.modale_supprimer_gallerie{
+.modale_supprimer_gallerie {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 5px;
   text-align: center;
-
 }
-.modale_supprimer_gallerie p{
+.modale_supprimer_gallerie p {
   font-size: 15px;
 }
 
 .modale_supprimer_gallerie span {
-  color:#d65353;
+  color: #d65353;
 }
 
 .modale_supprimer_gallerie button {
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 #oui {
-  background-color: #d65353 ;
+  background-color: #d65353;
   color: white;
   border: none;
   width: 150px;
@@ -319,11 +316,11 @@ margin-top: 10px;
   margin: 0 auto;
   margin-top: 15px;
   padding: 10px;
-  font-size:  13px;
+  font-size: 13px;
 }
 
 #non {
-  background-color: #1d6154 ;
+  background-color: #1d6154;
   color: white;
   border: none;
   width: 150px;
@@ -331,7 +328,7 @@ margin-top: 10px;
   margin: 0 auto;
   margin-top: 15px;
   padding: 10px;
-  font-size:  13px;
+  font-size: 13px;
 }
 .modale_form_container {
   display: flex;
@@ -571,8 +568,7 @@ li:hover {
   justify-content: center;
   padding-top: 15px;
   gap: 10px;
-  color:#d65353;
-  
+  color: #d65353;
 }
 input[type="submit"] {
   font-family: "Syne";
@@ -623,4 +619,40 @@ footer nav ul {
   100% {
     transform: translateX(0);
   }
+}
+
+.loader {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(255, 250, 250, 0.739);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  animation: loader 1s;
+  animation-delay: 1.75s;
+  animation-fill-mode: forwards;
+}
+
+.loader i {
+  font-size: 110px;
+  color: #1d6154;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+}
+
+.message_erreur_formulaire {
+  margin: 0 auto;
+  margin-bottom: 15px;
+  color: #d65353;
 }
