@@ -51,12 +51,12 @@ let authentified = localStorage.token;
 if (authentified !== undefined) {
   let filtres = document.querySelector(".filtres");
   let modifierP = document.querySelector(".modifier_portfolio");
-  let modifierI = document.querySelector(".modifier_introduction");
-  modifierI.addEventListener("click", () => {
-    modifierP.click();
-  });
+  let fileInput = document.querySelector("#introduction_img");
+  let profilePicForm = document.getElementById("profileForm");
+
+  
+
   modifierP.classList.remove("remove");
-  modifierI.classList.remove("remove");
 
   //retirer les bouttons filtres
   filtres.remove();
@@ -67,7 +67,7 @@ if (authentified !== undefined) {
   link_login.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.clear();
-    window.location.reload();
+    //window.location.reload();
   });
   //afficher la modale lorsque je clique sur modifier
   modifierP.addEventListener("click", () => {
@@ -134,7 +134,7 @@ if (authentified !== undefined) {
 
         //supprimer les photos en sortant
         modale_images.innerHTML = "";
-        window.location.reload();
+        //window.location.reload();
       });
       let modale = document.querySelector(".modale");
       let ajout_photo = document.querySelector(".ajout_photo");
@@ -154,7 +154,7 @@ if (authentified !== undefined) {
         remove_modal_icon = document.querySelector(".fa-xmark");
         remove_modal_icon.addEventListener("click", () => {
           modale.remove();
-          window.location.reload();
+          //window.location.reload();
         });
         ajout_photo_btn.addEventListener("click", () => {
           real_form_btn.click();
@@ -206,22 +206,27 @@ if (authentified !== undefined) {
           postWorks(token, formData);
         }
 
-        valider.addEventListener("click", () => {
+        valider.addEventListener("click", (e) => {
           function envoiRequete() {
             titre = document.getElementById("input_title").value;
             image = document.getElementById("real_image_form").files[0];
             option = document.getElementById("input_category").value;
+            console.log(titre)
+            console.log(image)
+            console.log(option)
+
 
             if (
-              titre !== undefined ||
-              image !== undefined ||
-              option !== undefined) {
+              titre &&
+              image !== undefined &&
+              option !== "no-option"
+            ) {
               createForm();
             } else {
-              let message_erreur_formulaire = document.querySelector(
-                ".message_erreur_formulaire"
-              );
+              console.log("test")
+              let message_erreur_formulaire = document.querySelector(".message_erreur_formulaire");
               message_erreur_formulaire.classList.remove("remove");
+              //TODO: trouver un moyen que le formulaire ne s'envoi pas 
             }
           }
           envoiRequete();
