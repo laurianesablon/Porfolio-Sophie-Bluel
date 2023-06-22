@@ -6,11 +6,6 @@ let hotel = document.querySelector(".hotel");
 let tous = document.querySelector(".tous");
 let select_category_options = document.getElementById("input_category");
 let loader = document.querySelector(".loader");
-//TODO
-//Revoir le nom des variables
-// Separer mon code en petites fonctions/fichier (modale, filtre...)
-//mettre fonctions et addeventlistener en racine
-//creer un fichier dans lequel faire tout mes calls (creer 5 fonctions pour mes 5 calls api )
 
 window.addEventListener("load", () => {
   getCategories().then((data) => {
@@ -221,7 +216,6 @@ if (authentified !== undefined) {
             } else {
               let message_erreur_formulaire = document.querySelector(".message_erreur_formulaire");
               message_erreur_formulaire.classList.remove("remove");
-              //TODO: trouver un moyen que le formulaire ne s'envoi pas 
             }
           }
           envoiRequete();
