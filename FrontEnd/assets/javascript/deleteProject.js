@@ -17,5 +17,4 @@ function deleteProject(id, callback) {
       }
       callback(); // call the callback function when deletion is done
     })
-    .catch((err) => console.log("Il y a un problème : " + err));
 }

@@ -211,10 +211,6 @@ if (authentified !== undefined) {
             titre = document.getElementById("input_title").value;
             image = document.getElementById("real_image_form").files[0];
             option = document.getElementById("input_category").value;
-            console.log(titre)
-            console.log(image)
-            console.log(option)
-
 
             if (
               titre &&
@@ -223,7 +219,6 @@ if (authentified !== undefined) {
             ) {
               createForm();
             } else {
-              console.log("test")
               let message_erreur_formulaire = document.querySelector(".message_erreur_formulaire");
               message_erreur_formulaire.classList.remove("remove");
               //TODO: trouver un moyen que le formulaire ne s'envoi pas 
