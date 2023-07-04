@@ -198,7 +198,7 @@ nav li {
 .modale::backdrop {
   background-color: #00000092;
 }
-.modale_start {
+.modaleStart {
   display: flex;
   flex-direction: column;
 }
@@ -292,7 +292,7 @@ hr {
 .modale_supprimer::backdrop {
   background-color: hsla(0, 0%, 0%, 0.702);
 }
-.modale_supprimer_gallerie {
+.modaleSupprimerGallerie {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -300,15 +300,15 @@ hr {
   margin-top: 5px;
   text-align: center;
 }
-.modale_supprimer_gallerie p {
+.modaleSupprimerGallerie p {
   font-size: 15px;
 }
 
-.modale_supprimer_gallerie span {
+.modaleSupprimerGallerie span {
   color: #d65353;
 }
 
-.modale_supprimer_gallerie button {
+.modaleSupprimerGallerie button {
   margin-top: 10px;
 }
 
@@ -335,12 +335,12 @@ hr {
   padding: 10px;
   font-size: 13px;
 }
-.modale_form_container {
+.modaleformContainer {
   display: flex;
   flex-direction: column;
 }
 
-.modale_form {
+.modaleForm {
   width: 420px;
   height: 169px;
   background-color: #e8f1f6;
@@ -355,7 +355,7 @@ hr {
   margin: 0 auto;
 }
 
-#modale_form_img {
+#modaleForm_img {
   margin-top: 30px;
 }
 
@@ -366,7 +366,7 @@ input[type="file"] {
   display: none;
 }
 
-#ajout_photo {
+#ajoutphoto {
   background-color: #cbd6dc;
   color: #306685;
   border: none;
@@ -374,7 +374,7 @@ input[type="file"] {
   width: 173px;
 }
 
-#ajout_photo:hover {
+#ajoutphoto:hover {
   background-color: #306685;
   color: white;
 }
@@ -396,7 +396,7 @@ input[type="file"] {
   margin-top: 10px;
 }
 
-.modale_form p {
+.modaleForm p {
   width: 420px;
   margin: 0 auto;
   font-size: 14px;
@@ -418,7 +418,7 @@ input[type="file"] {
   color: #d65353;
 }
 
-.link_login {
+.loginLogout {
   text-decoration: none;
   color: black;
 }
@@ -656,7 +656,7 @@ footer nav ul {
   }
 }
 
-.message_erreur_formulaire {
+.messageErreurFormulaire {
   margin: 0 auto;
   margin-bottom: 15px;
   color: #d65353;

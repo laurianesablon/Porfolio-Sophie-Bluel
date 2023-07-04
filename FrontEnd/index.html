@@ -13,10 +13,9 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="./assets/javascript/filtres.js"></script>
-    <script src="./assets/javascript/getWorks.js"></script>
-    <script src="./assets/javascript/deleteProject.js"></script>
-    <script src="./assets/javascript/getCategories.js"></script>
-    <script src="./assets/javascript/postWorks.js"></script>
+    <script src="./assets/javascript/modale.js"></script>
+    <script src="./assets/javascript/fetch.js"></script>
+    <script src="./assets/javascript/utils.js"></script>
     <script src="./assets/javascript/index.js" defer></script>
 
     <link
@@ -33,7 +32,7 @@
     <i class="fa-regular fa-trash-can"></i>
   </aside>
     <dialog class="modale">
-      <div class="modale_start">
+      <div class="modaleStart">
         <div class="modale_top">
           <i class="fa-solid fa-arrow-left white"></i>
 
@@ -43,10 +42,10 @@
         <h3 class="modale_titre">Galerie Photo</h3>
         <div class="modale_images"></div>
         <hr />
-        <button class="ajout_photo">Ajouter une photo</button>
+        <button class="ajoutphoto">Ajouter une photo</button>
         <p class="supprimer">Supprimer la galerie</p>
         <dialog class="modale_supprimer">
-          <p class="modale_supprimer_gallerie">
+          <p class="modaleSupprimerGallerie">
             Êtes vous sûr de vouloir supprimer toute la galerie?<br />
             Cette action est <span>IRREVERSIBLE</span>
             <button id="oui" >OUI</button>
@@ -56,7 +55,7 @@
       </div>
 
       <!--Modale: Ajouter une photo-->
-      <div class="modale_form_container">
+      <div class="modaleformContainer">
         <div class="modale_top">
           <i class="fa-solid fa-arrow-left"></i>
           <i class="fa-sharp fa-solid fa-xmark red"></i>
@@ -64,9 +63,9 @@
 
         <h3 class="modale_titre">Ajout Photo</h3>
 
-        <div class="modale_form">
+        <div class="modaleForm">
           <img
-            id="modale_form_img"
+            id="modaleForm_img"
             src="assets/icons/modale_ajouter_image.svg"
           />
           <input
@@ -76,7 +75,7 @@
             aria-hidden="true"
             accept="image/png, image/jpg"
           />
-          <button id="ajout_photo">+ Ajouter Photo</button>
+          <button id="ajoutphoto">+ Ajouter Photo</button>
           <p id="format">jpg, png: 4mo max</p>
         </div>
         <p class="erreur_taille remove">
@@ -91,7 +90,7 @@
         </select>
 
         <hr />
-        <p class="message_erreur_formulaire remove">Veillez remplir l'intégralité du formulaire</p>
+        <p class="messageErreurFormulaire remove">Veillez remplir l'intégralité du formulaire</p>
         <button class="valider">Valider</button>
       </div>
     </dialog>
@@ -101,7 +100,7 @@
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li class="link_login"><a href="login.html">login</a></li>
+          <li class="loginLogout"><a href="login.html">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
