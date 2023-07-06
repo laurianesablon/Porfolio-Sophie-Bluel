@@ -1,5 +1,5 @@
 function Filtres(works) {
-  objets.addEventListener("click", () => {
+  function ObjetsClick() {
     let objetFiltre = works.filter((work) => {
       objets.classList.add("buttonSelected");
       hotel.classList.remove("buttonSelected");
@@ -8,9 +8,9 @@ function Filtres(works) {
       return work.category.name === "Objets";
     });
     afficherImages(objetFiltre);
-  });
+  }
 
-  apparts.addEventListener("click", () => {
+  function AppartsClick() {
     let appartFiltre = works.filter((work) => {
       apparts.classList.add("buttonSelected");
       hotel.classList.remove("buttonSelected");
@@ -20,9 +20,9 @@ function Filtres(works) {
       return work.category.name === "Appartements";
     });
     afficherImages(appartFiltre);
-  });
+  }
 
-  hotel.addEventListener("click", () => {
+  function HotelClick() {
     let hotelFiltre = works.filter((work) => {
       hotel.classList.add("buttonSelected");
       tous.classList.remove("buttonSelected");
@@ -32,9 +32,9 @@ function Filtres(works) {
       return work.category.name === "Hotels & restaurants";
     });
     afficherImages(hotelFiltre);
-  });
+  }
 
-  tous.addEventListener("click", () => {
+  function TousClick() {
     // Clear the gallery before showing all images
     tous.classList.add("buttonSelected");
     hotel.classList.remove("buttonSelected");
@@ -43,5 +43,10 @@ function Filtres(works) {
 
     gallery.innerHTML = "";
     afficherImages(works);
-  });
+  }
+
+  objets.addEventListener("click", ObjetsClick);
+  apparts.addEventListener("click", AppartsClick);
+  hotel.addEventListener("click", HotelClick);
+  tous.addEventListener("click", TousClick);
 }

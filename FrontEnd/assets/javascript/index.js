@@ -33,7 +33,6 @@ let removeModalIcon = document.querySelector(".fa-xmark");
 let messageErreurFormulaire = document.querySelector(
   ".messageErreurFormulaire"
 );
-//TODO: retirer les tirets des variables
 window.addEventListener("load", () => {
   // Récupère les catégories et ajoute des options au menu déroulant
   getCategories().then((data) => {
