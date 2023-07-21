@@ -1,9 +1,6 @@
 let gallery = document.querySelector(".gallery");
 let token = localStorage.token;
-let objets = document.querySelector(".objets");
-let apparts = document.querySelector(".appart");
-let hotel = document.querySelector(".hotel");
-let tous = document.querySelector(".tous");
+
 let selectCategoryOptions = document.getElementById("input_category");
 let loader = document.querySelector(".loader");
 let formContainer = document.querySelector(".modaleForm");
@@ -35,14 +32,8 @@ let messageErreurFormulaire = document.querySelector(
 );
 window.addEventListener("load", () => {
   // Récupère les catégories et ajoute des options au menu déroulant
-  getCategories().then((data) => {
-    data.forEach((categorie) => {
-      let option = document.createElement("option");
-      option.value = categorie.id;
-      option.text = categorie.name;
-      selectCategoryOptions.add(option);
-    });
-  });
+  getCategories();
+  
 });
 
 // Affiche les images de la galerie
@@ -50,24 +41,9 @@ function afficherImages(filtre) {
   // Efface la galerie avant d'ajouter de nouvelles images
   gallery.innerHTML = "";
   for (let i = 0; i < filtre.length; i++) {
-    let figure = document.createElement("figure");
-    let img = createWorkImg(filtre[i]);
-    let figcaption = document.createElement("figcaption");
-    //img.src = filtre[i].imageUrl;
-    //img.alt = filtre[i].title;
-    figcaption.textContent = filtre[i].title;
-    figure.id = "work-" + filtre[i].id;
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
-    gallery.appendChild(figure);
+   
   }
 }
-
-getWorks().then((works) => {
-  // Affiche les images lors du chargement de la page
-  afficherImages(works);
-  Filtres(works);
-});
 
 // Gérer la page lorsqu'un utilisateur est connecté
 if (authentified !== undefined) {

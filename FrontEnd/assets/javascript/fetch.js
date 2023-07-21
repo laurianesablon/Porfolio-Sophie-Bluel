@@ -1,4 +1,4 @@
-function deleteProject(id, callback) {
+function deleteProject(id) {
   fetch("http://localhost:5678/api/works/" + id, {
     method: "DELETE",
     headers: {
@@ -15,31 +15,42 @@ function deleteProject(id, callback) {
       if (figure_gallery) {
         figure_gallery.remove();
       }
-      callback(); // call the callback function when deletion is done
     });
 }
 
 function getCategories() {
-  return fetch("http://localhost:5678/api/categories")
-    .then((response) => response.json())
+  fetch("http://localhost:5678/api/categories")
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else throw new Error(response.statusText);
+    })
     .then((data) => {
-      return data;
+      data.forEach((categorie) => {
+        let option = document.createElement("option");
+        option.value = categorie.id;
+        option.text = categorie.name;
+        selectCategoryOptions.add(option);
+      });
+      //window.location.reload();
     })
     .catch((error) => console.error(error));
 }
 
 function getWorks() {
   return fetch("http://localhost:5678/api/works")
-    .then((response) => response.json())
-    .then((data) => {
-      let works = data;
-      return works;
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(response.statusText);
+      }
     })
     .catch((error) => console.error(error));
 }
 
+
 function postWorks(token, formData) {
-  token = "";
   fetch("http://localhost:5678/api/works", {
     method: "POST",
     headers: {
