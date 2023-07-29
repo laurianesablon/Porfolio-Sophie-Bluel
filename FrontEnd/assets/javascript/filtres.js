@@ -1,20 +1,23 @@
+let authentified = localStorage.token;
+if (authentified == undefined) {
+
 function Filtres(works, objets, apparts, hotel, tous) {
-  objets.addEventListener(
-    "click",
-    ObjetsClick(works, objets, apparts, hotel, tous)
-  );
-  apparts.addEventListener(
-    "click",
-    AppartsClick(works, objets, apparts, hotel, tous)
-  );
-  hotel.addEventListener(
-    "click",
-    HotelClick(works, objets, apparts, hotel, tous)
-  );
-  tous.addEventListener(
-    "click",
-    TousClick(works, objets, apparts, hotel, tous)
-  );
+  TousClick(works, objets, apparts, hotel, tous);
+  objets.addEventListener("click", function () {
+    ObjetsClick(works, objets, apparts, hotel, tous);
+  });
+
+  apparts.addEventListener("click", function () {
+    AppartsClick(works, objets, apparts, hotel, tous);
+  });
+
+  hotel.addEventListener("click", function () {
+    HotelClick(works, objets, apparts, hotel, tous);
+  });
+
+  tous.addEventListener("click", function () {
+    TousClick(works, objets, apparts, hotel, tous);
+  });
 }
 
 function ObjetsClick(works, objets, apparts, hotel, tous) {
@@ -25,7 +28,7 @@ function ObjetsClick(works, objets, apparts, hotel, tous) {
     tous.classList.remove("buttonSelected");
     return work.category.name === "Objets";
   });
-  afficherImages(objetFiltre);
+  displayWorksInGallery(objetFiltre);
 }
 
 function AppartsClick(works, objets, apparts, hotel, tous) {
@@ -37,7 +40,8 @@ function AppartsClick(works, objets, apparts, hotel, tous) {
 
     return work.category.name === "Appartements";
   });
-  afficherImages(appartFiltre);
+
+  displayWorksInGallery(appartFiltre);
 }
 
 function HotelClick(works, objets, apparts, hotel, tous) {
@@ -49,7 +53,7 @@ function HotelClick(works, objets, apparts, hotel, tous) {
 
     return work.category.name === "Hotels & restaurants";
   });
-  afficherImages(hotelFiltre);
+  displayWorksInGallery(hotelFiltre);
 }
 
 function TousClick(works, objets, apparts, hotel, tous) {
@@ -60,5 +64,6 @@ function TousClick(works, objets, apparts, hotel, tous) {
   objets.classList.remove("buttonSelected");
 
   gallery.innerHTML = "";
-  afficherImages(works);
+  displayWorksInGallery(works);
+}
 }

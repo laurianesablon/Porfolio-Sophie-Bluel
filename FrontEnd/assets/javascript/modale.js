@@ -46,26 +46,22 @@ function SupprimerClick() {
   modaleSupprimerGallerie.showModal();
 
   boutonNon.addEventListener("click", BoutonNonClick);
+  boutonOui.addEventListener("click", BoutonOuiClick);
 }
 function BoutonNonClick() {
   modaleSupprimerGallerie.close();
 }
 
-function BoutonOuiClick(works) {
-  let numWorks = works.length;
-  let i = 0;
-  loader.classList.add("remove"); // Affiche le loader
-  works.forEach((work) => {
-    deleteProject(work.id, () => {
-      i++;
-      if (i === numWorks) {
-        loader.remove(); // Supprime le loader
-        modale.close();
-        modaleSupprimerGallerie.close();
-      }
+function BoutonOuiClick() {
+  getWorks().then((works) => {
+    loader.classList.add("remove"); // Affiche le loader
+    works.forEach((work) => {
+      deleteProject(work.id, () => {});
     });
+    loader.remove(); // Supprime le loader
+    modale.close();
+    modaleSupprimerGallerie.close();
   });
-  
 }
 function CloseModalIconClick() {
   modaleStart.remove();

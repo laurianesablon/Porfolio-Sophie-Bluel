@@ -32,7 +32,6 @@ function getCategories() {
         option.text = categorie.name;
         selectCategoryOptions.add(option);
       });
-      //window.location.reload();
     })
     .catch((error) => console.error(error));
 }
