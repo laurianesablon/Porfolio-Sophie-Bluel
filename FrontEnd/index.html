@@ -12,12 +12,12 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <script src="./assets/javascript/filtres.js"></script>
-    <script src="./assets/javascript/modale.js"></script>
-    <script src="./assets/javascript/fetch.js"></script>
-    <script src="./assets/javascript/utils.js"></script>
-    <script src="./assets/javascript/index.js" defer></script>
 
+    <script src="./assets/javascript/fetch.js"></script>
+    <script src="./assets/javascript/modale.js"></script>
+    <script src="./assets/javascript/index.js"></script>
+    <script src="./assets/javascript/index_1.js"></script>
+    <script src="./assets/javascript/utils.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -26,16 +26,15 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  
+
   <body>
-   <aside class="loader remove">
-    <i class="fa-regular fa-trash-can"></i>
-  </aside>
+    <aside class="loader remove">
+      <i class="fa-regular fa-trash-can"></i>
+    </aside>
     <dialog class="modale">
       <div class="modaleStart">
         <div class="modale_top">
           <i class="fa-solid fa-arrow-left white"></i>
-
           <i class="fa-sharp fa-solid fa-xmark red"></i>
         </div>
 
@@ -48,7 +47,7 @@
           <p class="modaleSupprimerGallerie">
             Êtes vous sûr de vouloir supprimer toute la galerie?<br />
             Cette action est <span>IRREVERSIBLE</span>
-            <button id="oui" >OUI</button>
+            <button id="oui">OUI</button>
             <button id="non">NON</button>
           </p>
         </dialog>
@@ -86,16 +85,22 @@
         <p class="input_description">Catégorie</p>
         <select name="input_category" id="input_category" class="modal_input">
           <!-- Options pour les catégories -->
-          <option class="option" value="no-option" disabled selected>Choisir une option</option>
+          <option class="option" value="no-option" disabled selected>
+            Choisir une option
+          </option>
         </select>
 
         <hr />
-        <p class="messageErreurFormulaire remove">Veillez remplir l'intégralité du formulaire</p>
+        <p class="messageErreurFormulaire remove">
+          Veillez remplir l'intégralité du formulaire
+        </p>
         <button class="valider">Valider</button>
       </div>
     </dialog>
     <header>
-      <a href="index.html"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
+      <a href="index.html"
+        ><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a
+      >
       <nav>
         <ul>
           <li>projets</li>
@@ -144,8 +149,7 @@
           </div>
         </div>
 
-        <article class="filtres">
-        </article>
+        <article class="filtres"></article>
         <div class="gallery"></div>
       </section>
       <section id="contact">

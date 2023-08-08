@@ -9,7 +9,6 @@ form.addEventListener("submit", (e) => {
     password: password.value,
   };
 
-
   fetch("http://localhost:5678/api/users/login", {
     method: "POST",
     headers: {
@@ -20,24 +19,27 @@ form.addEventListener("submit", (e) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       if (data.userId === 1) {
         window.location.href = "index.html";
-        window.localStorage.setItem("token", `${data.token}`);
+        window.sessionStorage.setItem("token", `${data.token}`);
       } else {
         email.style.border = "1px solid red";
         email.classList.add("shake");
         password.style.border = "1px solid red";
         password.classList.add("shake");
-        let message_erreur = document.querySelector(".message_erreur_login")
-        message_erreur.classList.remove("remove")
-        
+        let message_erreur = document.querySelector(".message_erreur_login");
+        message_erreur.classList.remove("remove");
+
         form.addEventListener("animationend", () => {
           email.classList.remove("shake");
           password.classList.remove("shake");
         });
-
       }
     })
-    .catch((error) => {console.error(error);
+    .catch((error) => {
+      console.error(error);
     });
 });
+
+

@@ -1,3 +1,4 @@
+let token = sessionStorage.token;
 function deleteProject(id) {
   fetch("http://localhost:5678/api/works/" + id, {
     method: "DELETE",
@@ -30,6 +31,7 @@ function getCategories() {
         let option = document.createElement("option");
         option.value = categorie.id;
         option.text = categorie.name;
+        let selectCategoryOptions = document.getElementById("input_category");
         selectCategoryOptions.add(option);
       });
     })

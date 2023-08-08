@@ -1,4 +1,4 @@
-let authentified = localStorage.token;
+let authentified = sessionStorage.token;
 if (authentified == undefined) {
 
 function Filtres(works, objets, apparts, hotel, tous) {
