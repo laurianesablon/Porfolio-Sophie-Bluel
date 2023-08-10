@@ -11,7 +11,7 @@ let formData = new FormData();
 let erreur_taille;
 let preview = document.createElement("img");
 let removeModalIcon = document.querySelector(".fa-xmark");
-
+console.log(removeModalIcon);
 
 function afficherModale() {
   modale = document.querySelector(".modale");
@@ -29,7 +29,6 @@ function afficherModale() {
     supprimer.addEventListener("click", SupprimerClick);
 
     // Icône de fermeture (croix)
-    console.log(removeModalIcon);
     removeModalIcon.addEventListener("click", CloseModalIconClick);
 
     ajoutphoto.addEventListener("click", AjoutPhotoClick);
