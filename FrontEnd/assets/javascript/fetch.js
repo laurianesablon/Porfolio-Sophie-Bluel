@@ -50,7 +50,6 @@ function getWorks() {
     .catch((error) => console.error(error));
 }
 
-
 function postWorks(token, formData) {
   fetch("http://localhost:5678/api/works", {
     method: "POST",
