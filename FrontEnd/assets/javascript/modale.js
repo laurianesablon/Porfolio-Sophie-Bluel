@@ -10,14 +10,17 @@ const maxSize = 4000000;
 let formData = new FormData();
 let erreur_taille;
 let preview = document.createElement("img");
-let removeModalIcon = document.querySelector(".fa-xmark");
-console.log(removeModalIcon);
+let removeModalIcon;
+let modaleStart;
 
 function afficherModale() {
   modale = document.querySelector(".modale");
+  modaleStart = document.querySelector(".modaleStart");
+
   modaleForm = document.querySelector(".modaleformContainer");
   let supprimer = document.querySelector(".supprimer");
   let ajoutphoto = document.querySelector(".ajoutphoto");
+  removeModalIcon = document.querySelector(".fa-xmark");
 
   modale.showModal();
   modaleForm.remove();
@@ -98,7 +101,6 @@ function CloseModalIconClick() {
 }
 
 function AjoutPhotoClick() {
-  let modaleStart = document.querySelector(".modaleStart");
 
   modaleStart.remove();
   modale.appendChild(modaleForm);
@@ -172,7 +174,6 @@ function createForm() {
   postWorks(token, formData);
 }
 function envoiRequete() {
-
   titre = document.getElementById("input_title").value;
   image = document.getElementById("real_image_form").files[0];
   option = document.getElementById("input_category").value;

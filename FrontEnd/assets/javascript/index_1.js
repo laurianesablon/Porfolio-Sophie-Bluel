@@ -74,8 +74,9 @@ function displayFiltersAboveGallery() {
 function displaySelectedButtons(e) {
   let buttons = document.querySelectorAll(".filter_buttons");
   let id = e.target.dataset.categoryId;
+
   Array.from(buttons).map((button) => {
-    if (button.dataset.categoryId == id ){
+    if (button.dataset.categoryId == id ) {
       button.classList.add("buttonSelected");
     } else {
       button.classList.remove("buttonSelected");
