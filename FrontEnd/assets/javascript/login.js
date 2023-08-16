@@ -19,7 +19,6 @@ form.addEventListener("submit", (e) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       if (data.userId === 1) {
         window.location.href = "index.html";
         window.sessionStorage.setItem("token", `${data.token}`);

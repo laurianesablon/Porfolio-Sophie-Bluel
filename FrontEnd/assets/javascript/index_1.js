@@ -6,11 +6,11 @@ window.addEventListener("load", () => {
     displayFiltersAboveGallery();
   } else {
     getCategories();
-    let modifierP = document.querySelector(".modifier_portfolio");
-    modifierP.classList.remove ("remove");
+    let modifyBtn = document.querySelector(".modifier_portfolio");
+    modifyBtn.classList.remove ("remove");
   // Supprimer les boutons de filtres
-  let filtres = document.querySelector(".filtres");
-  filtres.remove();
+  let filters = document.querySelector(".filtres");
+  filters.remove();
   ;
 
   // Changer le lien "login" en "logout"
@@ -22,7 +22,7 @@ window.addEventListener("load", () => {
     window.location.reload();
   });
 
-  modifierP.addEventListener("click", afficherModale);
+  modifyBtn.addEventListener("click", displayModal);
   }
 });
 window.addEventListener("load", () => {

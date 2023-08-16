@@ -1,44 +1,44 @@
-let modale;
-let modaleForm;
-let ajoutphotoBtn;
+let modal;
+let modalForm;
+let addPictureBtn;
 let realFormBtn;
 let formContainer;
-let modaleSupprimerGallerie;
-let titre;
+let removeGalleryModal;
+let imgTitle;
 let image;
 const maxSize = 4000000;
 let formData = new FormData();
-let erreur_taille;
+let sizeError;
 let preview = document.createElement("img");
 let removeModalIcon;
-let modaleStart;
+let modalStart;
 
-function afficherModale() {
-  modale = document.querySelector(".modale");
-  modaleStart = document.querySelector(".modaleStart");
+function displayModal() {
+  modal = document.querySelector(".modale");
+  modalStart = document.querySelector(".modaleStart");
 
-  modaleForm = document.querySelector(".modaleformContainer");
+  modalForm = document.querySelector(".modaleformContainer");
   let supprimer = document.querySelector(".supprimer");
   let ajoutphoto = document.querySelector(".ajoutphoto");
   removeModalIcon = document.querySelector(".fa-xmark");
 
-  modale.showModal();
-  modaleForm.remove();
+  modal.showModal();
+  modalForm.remove();
+  removeModalIcon.addEventListener("click", CloseModalIconClick);
 
   getWorks().then((works) => {
     showWorks(works);
 
     // Supprimer la galerie
-    supprimer.addEventListener("click", SupprimerClick);
+    supprimer.addEventListener("click", deleteGallery);
 
     // Icône de fermeture (croix)
-    removeModalIcon.addEventListener("click", CloseModalIconClick);
 
     ajoutphoto.addEventListener("click", AjoutPhotoClick);
   });
 }
 function createWorkFigure(work) {
-  let modale_images = document.querySelector(".modale_images");
+  let modalImages = document.querySelector(".modale_images");
   let figure = document.createElement("figure");
   let img = createWorkImg(work);
   let trash = document.createElement("img");
@@ -53,9 +53,9 @@ function createWorkFigure(work) {
     deleteProject(work.id);
 
     // Supprime l'œuvre du DOM
-    modale_images.removeChild(figure);
+    modalImages.removeChild(figure);
   });
-  modale_images.appendChild(figure);
+  modalImages.appendChild(figure);
   figure.appendChild(trash);
 }
 
@@ -65,20 +65,20 @@ function showWorks(works) {
   }
 }
 
-function SupprimerClick() {
-  modaleSupprimerGallerie = document.querySelector(".modale_supprimer");
-  modaleSupprimerGallerie.showModal();
-  let boutonOui = document.querySelector("#oui");
-  let boutonNon = document.querySelector("#non");
+function deleteGallery() {
+  removeGalleryModal = document.querySelector(".modale_supprimer");
+  removeGalleryModal.showModal();
+  let YesButton = document.querySelector("#oui");
+  let NoButton = document.querySelector("#non");
 
-  boutonNon.addEventListener("click", BoutonNonClick);
-  boutonOui.addEventListener("click", BoutonOuiClick);
+  NoButton.addEventListener("click", deleteGalleryNoButton);
+  YesButton.addEventListener("click", deleteGalleryYesButton);
 }
-function BoutonNonClick() {
-  modaleSupprimerGallerie.close();
+function deleteGalleryNoButton() {
+  removeGalleryModal.close();
 }
 
-function BoutonOuiClick() {
+function deleteGalleryYesButton() {
   getWorks().then((works) => {
     let loader = document.querySelector(".loader");
     loader.classList.add("remove"); // Affiche le loader
@@ -86,53 +86,50 @@ function BoutonOuiClick() {
       deleteProject(work.id, () => {});
     });
     loader.remove(); // Supprime le loader
-    modale.close();
-    modaleSupprimerGallerie.close();
+    modal.close();
+    removeGalleryModal.close();
   });
 }
 function CloseModalIconClick() {
-  modaleStart.remove();
-  modaleForm.remove();
-
-  let modale_images = document.querySelector(".modale_images");
-
+  modalStart.remove();
+  modalForm.remove();
   // Supprime les photos en sortant
   window.location.reload();
 }
 
 function AjoutPhotoClick() {
-
-  modaleStart.remove();
-  modale.appendChild(modaleForm);
+  modalStart.remove();
+  modal.appendChild(modalForm);
 
   // Flèche de retour
-  let fleche = document.querySelector(".fa-arrow-left");
-  fleche.classList.remove("white");
+  let arrow = document.querySelector(".fa-arrow-left");
+  arrow.classList.remove("white");
 
-  fleche.addEventListener("click", FlecheClick);
+  arrow.addEventListener("click", arrowClick);
 
   removeModalIcon.addEventListener("click", RemoveModalIconClick);
-  ajoutphotoBtn = document.querySelector("#ajoutphoto");
+  addPictureBtn = document.querySelector("#ajoutphoto");
 
-  ajoutphotoBtn.addEventListener("click", AjoutPhotoBtnClick);
+  addPictureBtn.addEventListener("click", addPictureBtnClick);
   realFormBtn = document.querySelector("#real_image_form");
   realFormBtn.addEventListener("change", RealFormBtnChange);
   let valider = document.querySelector(".valider");
 
-  valider.addEventListener("click", ValiderClick);
+  valider.addEventListener("click", ValiderBtnClick);
+  removeModalIcon.addEventListener("click", CloseModalIconClick);
 }
 
-function FlecheClick() {
-  modaleForm.remove();
-  modale.appendChild(modaleStart);
+function arrowClick() {
+  modalForm.remove();
+  modal.appendChild(modalStart);
 }
 
 function RemoveModalIconClick() {
-  modale.remove();
+  modal.remove();
   window.location.reload();
 }
 
-function AjoutPhotoBtnClick() {
+function addPictureBtnClick() {
   realFormBtn.click();
 }
 
@@ -143,52 +140,52 @@ function showPreview(e) {
   let format = document.getElementById("format");
 
   format.remove();
-  let imgContainerModale = document.getElementById("modaleForm_img");
-  imgContainerModale.remove();
-  ajoutphotoBtn.remove();
+  let imgContainerModal = document.getElementById("modaleForm_img");
+  imgContainerModal.remove();
+  addPictureBtn.remove();
   formContainer = document.querySelector(".modaleForm");
   formContainer.appendChild(preview);
 }
 
 function RealFormBtnChange(e) {
-  erreur_taille = document.querySelector(".erreur_taille");
+  sizeError = document.querySelector(".erreur_taille");
   if (e.target.files[0].size >= maxSize) {
-    erreur_taille.classList.remove("remove");
+    sizeError.classList.remove("remove");
     preview.remove();
   } else {
     showPreview(e);
   }
 }
 function createForm() {
-  erreur_taille = document.querySelector(".erreur_taille");
+  sizeError = document.querySelector(".erreur_taille");
   if (image.size < maxSize) {
-    erreur_taille.remove();
+    sizeError.remove();
 
     // Crée le formulaire pour envoyer les données
     formData.append("image", image);
-    formData.append("title", titre);
-    formData.append("category", option);
+    formData.append("title", imgTitle);
+    formData.append("category", imgOption);
   }
 
   // Envoie les données à l'API via une requête POST
   postWorks(token, formData);
 }
 function envoiRequete() {
-  titre = document.getElementById("input_title").value;
+  imgTitle = document.getElementById("input_title").value;
   image = document.getElementById("real_image_form").files[0];
-  option = document.getElementById("input_category").value;
+  imgOption = document.getElementById("input_category").value;
 
-  if (titre && image !== undefined && option !== "no-option") {
+  if (imgTitle && image !== undefined && imgOption !== "no-option") {
     createForm();
   } else {
-    let messageErreurFormulaire = document.querySelector(
+    let FormErrorMessage = document.querySelector(
       ".messageErreurFormulaire"
     );
 
-    messageErreurFormulaire.classList.remove("remove");
+    FormErrorMessage.classList.remove("remove");
   }
 }
 
-function ValiderClick() {
+function ValiderBtnClick() {
   envoiRequete();
 }

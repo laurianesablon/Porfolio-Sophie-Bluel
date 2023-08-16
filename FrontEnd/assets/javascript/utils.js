@@ -6,8 +6,8 @@ function createWorkImg(work) {
 }
 
 function createFilterButtonInGallery() {
-  let filtreContainer = document.querySelector(".filtres");
+  let filterContainer = document.querySelector(".filtres");
   let button = document.createElement("button");
   button.innerHTML = categorie.name;
-  filtreContainer.appendChild(button);
+  filterContainer.appendChild(button);
 }

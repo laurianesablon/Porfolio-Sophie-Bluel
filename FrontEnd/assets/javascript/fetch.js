@@ -12,9 +12,9 @@ function deleteProject(id) {
       }
     })
     .then(() => {
-      let figure_gallery = document.querySelector("#work-" + id);
-      if (figure_gallery) {
-        figure_gallery.remove();
+      let galleryFigures = document.querySelector("#work-" + id);
+      if (galleryFigures) {
+        galleryFigures.remove();
       }
     });
 }
