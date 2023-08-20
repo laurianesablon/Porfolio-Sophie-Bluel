@@ -16,7 +16,6 @@ let modalStart;
 function displayModal() {
   modal = document.querySelector(".modale");
   modalStart = document.querySelector(".modaleStart");
-
   modalForm = document.querySelector(".modaleformContainer");
   let supprimer = document.querySelector(".supprimer");
   let ajoutphoto = document.querySelector(".ajoutphoto");
@@ -24,7 +23,7 @@ function displayModal() {
 
   modal.showModal();
   modalForm.remove();
-  removeModalIcon.addEventListener("click", CloseModalIconClick);
+  removeModalIcon.addEventListener("click", closeModalIconClick);
 
   getWorks().then((works) => {
     showWorks(works);
@@ -34,7 +33,7 @@ function displayModal() {
 
     // Icône de fermeture (croix)
 
-    ajoutphoto.addEventListener("click", AjoutPhotoClick);
+    ajoutphoto.addEventListener("click", ajoutPhotoClick);
   });
 }
 function createWorkFigure(work) {
@@ -68,11 +67,11 @@ function showWorks(works) {
 function deleteGallery() {
   removeGalleryModal = document.querySelector(".modale_supprimer");
   removeGalleryModal.showModal();
-  let YesButton = document.querySelector("#oui");
-  let NoButton = document.querySelector("#non");
+  let yesButton = document.querySelector("#oui");
+  let noButton = document.querySelector("#non");
 
-  NoButton.addEventListener("click", deleteGalleryNoButton);
-  YesButton.addEventListener("click", deleteGalleryYesButton);
+  noButton.addEventListener("click", deleteGalleryNoButton);
+  yesButton.addEventListener("click", deleteGalleryYesButton);
 }
 function deleteGalleryNoButton() {
   removeGalleryModal.close();
@@ -90,14 +89,14 @@ function deleteGalleryYesButton() {
     removeGalleryModal.close();
   });
 }
-function CloseModalIconClick() {
+function closeModalIconClick() {
   modalStart.remove();
   modalForm.remove();
   // Supprime les photos en sortant
   window.location.reload();
 }
 
-function AjoutPhotoClick() {
+function ajoutPhotoClick() {
   modalStart.remove();
   modal.appendChild(modalForm);
 
@@ -107,16 +106,16 @@ function AjoutPhotoClick() {
 
   arrow.addEventListener("click", arrowClick);
 
-  removeModalIcon.addEventListener("click", RemoveModalIconClick);
+  removeModalIcon.addEventListener("click", removeModalIconClick);
   addPictureBtn = document.querySelector("#ajoutphoto");
 
   addPictureBtn.addEventListener("click", addPictureBtnClick);
   realFormBtn = document.querySelector("#real_image_form");
-  realFormBtn.addEventListener("change", RealFormBtnChange);
+  realFormBtn.addEventListener("change", realFormBtnChange);
   let valider = document.querySelector(".valider");
 
-  valider.addEventListener("click", ValiderBtnClick);
-  removeModalIcon.addEventListener("click", CloseModalIconClick);
+  valider.addEventListener("click", sendFormValuesToPost);
+  removeModalIcon.addEventListener("click", closeModalIconClick);
 }
 
 function arrowClick() {
@@ -124,7 +123,7 @@ function arrowClick() {
   modal.appendChild(modalStart);
 }
 
-function RemoveModalIconClick() {
+function removeModalIconClick() {
   modal.remove();
   window.location.reload();
 }
@@ -147,7 +146,7 @@ function showPreview(e) {
   formContainer.appendChild(preview);
 }
 
-function RealFormBtnChange(e) {
+function realFormBtnChange(e) {
   sizeError = document.querySelector(".erreur_taille");
   if (e.target.files[0].size >= maxSize) {
     sizeError.classList.remove("remove");
@@ -170,7 +169,7 @@ function createForm() {
   // Envoie les données à l'API via une requête POST
   postWorks(token, formData);
 }
-function envoiRequete() {
+function sendFormValuesToPost() {
   imgTitle = document.getElementById("input_title").value;
   image = document.getElementById("real_image_form").files[0];
   imgOption = document.getElementById("input_category").value;
@@ -178,14 +177,8 @@ function envoiRequete() {
   if (imgTitle && image !== undefined && imgOption !== "no-option") {
     createForm();
   } else {
-    let FormErrorMessage = document.querySelector(
-      ".messageErreurFormulaire"
-    );
+    let FormErrorMessage = document.querySelector(".messageErreurFormulaire");
 
     FormErrorMessage.classList.remove("remove");
   }
-}
-
-function ValiderBtnClick() {
-  envoiRequete();
 }

@@ -2,12 +2,13 @@ let authentified = sessionStorage.token;
 
 window.addEventListener("load", () => {
   displayWorksInGallery();
+  getWorks();
   if (!authentified) {
     displayFiltersAboveGallery();
   } else {
     getCategories();
     let modifyBtn = document.querySelector(".modifier_portfolio");
-    modifyBtn.classList.remove ("remove");
+    modifyBtn.classList.remove("remove");
   // Supprimer les boutons de filtres
   let filters = document.querySelector(".filtres");
   filters.remove();
@@ -18,17 +19,13 @@ window.addEventListener("load", () => {
   loginLogout.textContent = "logout";
   loginLogout.addEventListener("click", (e) => {
     e.preventDefault();
-    sessionStorage.clear();
+    sessionStorage.removeItem("token");
     window.location.reload();
   });
 
   modifyBtn.addEventListener("click", displayModal);
   }
 });
-window.addEventListener("load", () => {
-  getWorks();
-});
-
 
 
 function displayWorksInGallery() {
@@ -80,7 +77,6 @@ function displaySelectedButtons(e) {
       button.classList.add("buttonSelected");
     } else {
       button.classList.remove("buttonSelected");
-
     }
   })
   
