@@ -64,6 +64,8 @@ function displayFiltersAboveGallery() {
       button.addEventListener("click", displayWorksByCategoryId);
       button.addEventListener("click", displaySelectedButtons)
     });
+    let tousButton = document.querySelector(".Tous");
+    tousButton.classList.add("buttonSelected");
 
   });
 }
