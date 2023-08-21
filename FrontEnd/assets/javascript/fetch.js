@@ -19,26 +19,7 @@ function deleteProject(id) {
     });
 }
 
-function getCategories() {
-  fetch("http://localhost:5678/api/categories")
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else throw new Error(response.statusText);
-    })
-    .then((data) => {
-      data.forEach((categorie) => {
-        let option = document.createElement("option");
-        option.value = categorie.id;
-        option.text = categorie.name;
-        let selectCategoryOptions = document.getElementById("input_category");
-        selectCategoryOptions.add(option);
-      });
-    })
-    .catch((error) => console.error(error));
-}
-
-function getWorks() {
+function fetchWorks() {
   return fetch("http://localhost:5678/api/works")
     .then((response) => {
       if (response.ok) {
@@ -50,6 +31,17 @@ function getWorks() {
     .catch((error) => console.error(error));
 }
 
+function fetchCategories() {
+  return fetch("http://localhost:5678/api/categories")
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(response.statusText);
+      }
+    })
+    .catch((error) => console.error(error));
+}
 function postWorks(token, formData) {
   fetch("http://localhost:5678/api/works", {
     method: "POST",

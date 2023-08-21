@@ -25,7 +25,7 @@ function displayModal() {
   modalForm.remove();
   removeModalIcon.addEventListener("click", closeModalIconClick);
 
-  getWorks().then((works) => {
+  fetchWorks().then((works) => {
     showWorks(works);
 
     // Supprimer la galerie
@@ -78,7 +78,7 @@ function deleteGalleryNoButton() {
 }
 
 function deleteGalleryYesButton() {
-  getWorks().then((works) => {
+  fetchWorks().then((works) => {
     let loader = document.querySelector(".loader");
     loader.classList.add("remove"); // Affiche le loader
     works.forEach((work) => {
