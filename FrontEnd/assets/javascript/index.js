@@ -80,7 +80,7 @@ function displaySelectedButtons(e) {
 }
 
 function getCategories() {
-  fetchCategories()
+  fetchCategories() 
     .then((data) => {
       data.forEach((categorie) => {
         let option = document.createElement("option");
